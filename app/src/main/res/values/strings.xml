@@ -1,0 +1,29 @@
+<resources>
+    <string name="app_name">SkillMap</string>
+    <string name="get_started_now">Get Started now</string>
+    <string name="create_an_account_or_log_in_to_explore_our_app">Create an account or log in to explore our app</string>
+    <string name="sign_in_with_google">Sign in with Google</string>
+    <string name="email">Email</string>
+    <string name="loisbecket_gmail_com">Loisbecket@gmail.com</string>
+    <string name="password">Password</string>
+    <string name="pass">*******</string>
+    <string name="log_in">Log In</string>
+    <string name="don_t_have_an_account_sign_up">Don’t have an account? Sign Up</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="already_have_an_account">Already have an account?</string>
+    <string name="login">Login</string>
+    <string name="first_name">First Name</string>
+    <string name="lois">Lois</string>
+    <string name="last_name">Last Name</string>
+    <string name="becket">Becket</string>
+    <string name="signup_email">Email</string>
+    <string name="loisbecket_gmail_com1">Loisbecket@gmail.com</string>
+    <string name="birth_of_date">Birth of date</string>
+    <string name="phone_number">Phone Number</string>
+    <string name="_454_726_0592">(454) 726-0592</string>
+    <string name="set_password">Set Password</string>
+    <string name="pass1">*******</string>
+    <string name="register">Register</string>
+    <string name="todo">TODO</string>
+    <string name="todo1">TODO</string>
+</resources>
