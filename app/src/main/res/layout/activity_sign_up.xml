@@ -29,7 +29,7 @@
         android:id="@+id/ivLogo"
         android:layout_width="180dp"
         android:layout_height="120dp"
-        android:contentDescription="@string/todo"
+        android:contentDescription="@string/logo_desc"
         android:src="@drawable/skillmap_logo"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -77,13 +77,14 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/already_have_an_account"
+                        android:text="@string/already_have_account"
                         android:textColor="#6C7278"
                         android:textSize="12sp" />
                     <TextView
                         android:id="@+id/tvLoginLink"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginStart="4dp"
                         android:text="@string/login"
                         android:textColor="#4D81E7"
                         android:textStyle="bold"
@@ -98,25 +99,49 @@
                     android:orientation="horizontal">
                     <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:orientation="vertical" android:layout_marginEnd="8dp">
                         <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/first_name" android:textColor="#6C7278" android:textSize="12sp"/>
-                        <EditText android:layout_width="match_parent" android:layout_height="48dp" android:background="@drawable/edittext_border" android:hint="@string/lois" android:paddingHorizontal="12dp" android:textSize="14sp" android:layout_marginTop="4dp"/>
+                        <EditText android:id="@+id/etFirstName" android:layout_width="match_parent" android:layout_height="48dp" android:background="@drawable/edittext_border" android:hint="@string/first_name_hint" android:paddingHorizontal="12dp" android:textSize="14sp" android:layout_marginTop="4dp" android:inputType="textPersonName"/>
                     </LinearLayout>
                     <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:orientation="vertical">
                         <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/last_name" android:textColor="#6C7278" android:textSize="12sp"/>
-                        <EditText android:layout_width="match_parent" android:layout_height="48dp" android:background="@drawable/edittext_border" android:hint="@string/becket" android:paddingHorizontal="12dp" android:textSize="14sp" android:layout_marginTop="4dp"/>
+                        <EditText android:id="@+id/etLastName" android:layout_width="match_parent" android:layout_height="48dp" android:background="@drawable/edittext_border" android:hint="@string/last_name_hint" android:paddingHorizontal="12dp" android:textSize="14sp" android:layout_marginTop="4dp" android:inputType="textPersonName"/>
                     </LinearLayout>
                 </LinearLayout>
 
-                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/signup_email" android:textColor="#6C7278" android:layout_marginTop="16dp" android:textSize="12sp"/>
-                <EditText android:layout_width="match_parent" android:layout_height="48dp" android:background="@drawable/edittext_border" android:hint="@string/loisbecket_gmail_com1" android:paddingHorizontal="12dp" android:layout_marginTop="4dp" android:textSize="14sp"/>
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/email" android:textColor="#6C7278" android:layout_marginTop="16dp" android:textSize="12sp"/>
+                <EditText
+                    android:id="@+id/etEmail"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:layout_marginTop="4dp"
+                    android:background="@drawable/edittext_border"
+                    android:hint="@string/email_hint"
+                    android:paddingHorizontal="12dp"
+                    android:textSize="14sp"
+                    android:inputType="textEmailAddress" />
 
-                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/birth_of_date" android:textColor="#6C7278" android:layout_marginTop="16dp" android:textSize="12sp"/>
-                <EditText android:id="@+id/etBirthDate" android:layout_width="match_parent" android:layout_height="48dp" android:background="@drawable/edittext_border" android:hint="18/03/2024" android:focusable="false" android:paddingHorizontal="12dp" android:layout_marginTop="4dp" android:textSize="14sp"/>
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/birth_date" android:textColor="#6C7278" android:layout_marginTop="16dp" android:textSize="12sp"/>
+                <EditText android:id="@+id/etBirthDate" android:layout_width="match_parent" android:layout_height="48dp" android:background="@drawable/edittext_border" android:hint="Select Date" android:focusable="false" android:clickable="true" android:paddingHorizontal="12dp" android:layout_marginTop="4dp" android:textSize="14sp"/>
 
                 <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/phone_number" android:textColor="#6C7278" android:layout_marginTop="16dp" android:textSize="12sp"/>
-                <EditText android:layout_width="match_parent" android:layout_height="48dp" android:background="@drawable/edittext_border" android:hint="@string/_454_726_0592" android:inputType="phone" android:paddingHorizontal="12dp" android:layout_marginTop="4dp" android:textSize="14sp"/>
+                <EditText android:id="@+id/etPhone" android:layout_width="match_parent" android:layout_height="48dp" android:background="@drawable/edittext_border" android:hint="@string/phone_hint" android:inputType="phone" android:paddingHorizontal="12dp" android:layout_marginTop="4dp" android:textSize="14sp"/>
 
-                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/set_password" android:textColor="#6C7278" android:layout_marginTop="16dp" android:textSize="12sp"/>
-                <EditText android:layout_width="match_parent" android:layout_height="48dp" android:background="@drawable/edittext_border" android:hint="@string/pass1" android:inputType="textPassword" android:paddingHorizontal="12dp" android:layout_marginTop="4dp" android:textSize="14sp"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/password"
+                    android:textColor="#6C7278"
+                    android:layout_marginTop="16dp"
+                    android:textSize="12sp"/>
+                <EditText
+                    android:id="@+id/etPassword"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:background="@drawable/edittext_border"
+                    android:hint="@string/password_hint"
+                    android:inputType="textPassword"
+                    android:paddingHorizontal="12dp"
+                    android:layout_marginTop="4dp"
+                    android:textSize="14sp"/>
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/btnRegister"

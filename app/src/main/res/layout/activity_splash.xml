@@ -31,7 +31,7 @@
         android:id="@+id/ivSplashLogo"
         android:layout_width="250dp"
         android:layout_height="250dp"
-        android:contentDescription="@string/todo1"
+        android:contentDescription="@string/logo_desc"
         android:src="@drawable/skillmap_logo"
         android:alpha="0"
         android:scaleX="0.5"
