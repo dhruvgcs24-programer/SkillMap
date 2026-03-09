@@ -14,15 +14,15 @@ import com.google.firebase.auth.FirebaseAuth;
 
 public class HomeActivity extends AppCompatActivity {
 
+    MaterialButton btnLogout;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_home);
 
-        MaterialButton btnLogout = findViewById(R.id.btnLogout);
-
-
+        btnLogout = findViewById(R.id.btnLogout);
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
@@ -31,12 +31,16 @@ public class HomeActivity extends AppCompatActivity {
         });
 
         btnLogout.setOnClickListener(v -> {
-            // 1. Log out from Firebase
+
+            // Logout from Firebase
             FirebaseAuth.getInstance().signOut();
 
-            // 2. Go back to Login
-            startActivity(new Intent(HomeActivity.this, LoginActivity.class));
-            finish();
+            // Go back to Login screen
+            Intent intent = new Intent(HomeActivity.this, LoginActivity.class);
+
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+
+            startActivity(intent);
         });
     }
 }
