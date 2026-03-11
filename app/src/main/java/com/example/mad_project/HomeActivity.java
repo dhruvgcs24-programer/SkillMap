@@ -1,46 +1,117 @@
 package com.example.mad_project;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
-
-import androidx.activity.EdgeToEdge;
+import android.util.Base64;
+import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.Toast;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
-import com.google.android.material.button.MaterialButton;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.*;
 
 public class HomeActivity extends AppCompatActivity {
 
-    MaterialButton btnLogout;
+    private FirebaseAuth mAuth;
+    private DatabaseReference mDatabase;
+    private TextView tvWelcomeUser;
+    private ImageView ivHeaderProfile;
+    private ValueEventListener userListener; // To manage the listener
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
         setContentView(R.layout.activity_home);
 
-        btnLogout = findViewById(R.id.btnLogout);
+        mAuth = FirebaseAuth.getInstance();
+        mDatabase = FirebaseDatabase.getInstance().getReference();
 
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            return insets;
+        tvWelcomeUser = findViewById(R.id.tvWelcomeUser);
+        ivHeaderProfile = findViewById(R.id.ivHeaderProfile);
+        BottomNavigationView bottomNav = findViewById(R.id.bottomNav);
+
+        loadUserData();
+        setupCardListeners();
+
+        bottomNav.setOnItemSelectedListener(item -> {
+            int id = item.getItemId();
+            if (id == R.id.nav_profile) {
+                startActivity(new Intent(HomeActivity.this, EditProfileActivity.class));
+                return true;
+            }
+            return true;
         });
+    }
 
-        btnLogout.setOnClickListener(v -> {
+    private void loadUserData() {
+        if (mAuth.getCurrentUser() != null) {
+            String uid = mAuth.getCurrentUser().getUid();
 
-            // Logout from Firebase
-            FirebaseAuth.getInstance().signOut();
+            userListener = new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    if (snapshot.exists()) {
+                        String name = snapshot.child("firstName").getValue(String.class);
+                        tvWelcomeUser.setText("Hi, " + name + "! Ready to learn?");
 
-            // Go back to Login screen
-            Intent intent = new Intent(HomeActivity.this, LoginActivity.class);
+                        // Base64 Decoding
+                        String base64String = snapshot.child("profileImageUrl").getValue(String.class);
+                        if (base64String != null && !base64String.isEmpty()) {
+                            try {
+                                byte[] decodedString = Base64.decode(base64String, Base64.DEFAULT);
+                                Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
+                                ivHeaderProfile.setImageBitmap(decodedByte);
+                                ivHeaderProfile.clearColorFilter(); // Remove any icon tints
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    }
+                }
 
-            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+                    // Prevent error toast if we are logging out
+                    if (mAuth.getCurrentUser() != null) {
+                        Toast.makeText(HomeActivity.this, "Database Error", Toast.LENGTH_SHORT).show();
+                    }
+                }
+            };
 
-            startActivity(intent);
-        });
+            mDatabase.child("Users").child(uid).addValueEventListener(userListener);
+        }
+    }
+
+    private void setupCardListeners() {
+        findViewById(R.id.cardFrontend).setOnClickListener(v -> openRoadmap("Frontend"));
+        findViewById(R.id.cardBackend).setOnClickListener(v -> openRoadmap("Backend"));
+        findViewById(R.id.cardAndroid).setOnClickListener(v -> openRoadmap("Android"));
+        findViewById(R.id.cardFullStack).setOnClickListener(v -> openRoadmap("Full Stack"));
+        findViewById(R.id.cardDevOps).setOnClickListener(v -> openRoadmap("DevOps"));
+        findViewById(R.id.cardAI).setOnClickListener(v -> openRoadmap("AI / ML"));
+
+        findViewById(R.id.btnPython).setOnClickListener(v -> openRoadmap("Python"));
+        findViewById(R.id.btnSQL).setOnClickListener(v -> openRoadmap("SQL"));
+        findViewById(R.id.btnJS).setOnClickListener(v -> openRoadmap("JavaScript"));
+        findViewById(R.id.btnJava).setOnClickListener(v -> openRoadmap("Java"));
+    }
+
+    private void openRoadmap(String roadmapName) {
+        Toast.makeText(this, "Opening " + roadmapName + " Roadmap...", Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        // Detach listener to prevent memory leaks or permission errors
+        if (userListener != null && mAuth.getCurrentUser() != null) {
+            String uid = mAuth.getCurrentUser().getUid();
+            mDatabase.child("Users").child(uid).removeEventListener(userListener);
+        }
     }
 }

@@ -6,4 +6,73 @@
     </style>
 
     <style name="Theme.MAD_project" parent="Base.Theme.MAD_project" />
+
+    <style name="RoleCardStyle">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">120dp</item>
+        <item name="android:layout_columnWeight">1</item>
+        <item name="android:layout_margin">8dp</item>
+        <item name="cardCornerRadius">20dp</item>
+        <item name="cardElevation">4dp</item>
+        <item name="strokeWidth">0dp</item>
+    </style>
+
+    <style name="RoleCardContent">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:orientation">vertical</item>
+        <item name="android:padding">16dp</item>
+        <item name="android:gravity">center_vertical</item>
+    </style>
+
+    <style name="RoleIconStyle">
+        <item name="android:layout_width">32dp</item>
+        <item name="android:layout_height">32dp</item>
+        <item name="android:tint">#7C4DFF</item>
+    </style>
+
+    <style name="RoleTextStyle">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">12dp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">#1A1C1E</item>
+        <item name="android:textSize">15sp</item>
+    </style>
+
+    <style name="SkillCardStyle">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">75dp</item>
+        <item name="android:layout_columnWeight">1</item>
+        <item name="android:layout_margin">6dp</item>
+        <item name="cardCornerRadius">15dp</item>
+        <item name="cardElevation">2dp</item>
+    </style>
+
+    <style name="SkillCardContent">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:orientation">horizontal</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:padding">12dp</item>
+    </style>
+
+    <style name="SkillBadgeStyle">
+        <item name="android:layout_width">40dp</item>
+        <item name="android:layout_height">40dp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">14sp</item>
+    </style>
+
+    <style name="SkillTextStyle">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginStart">12dp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">#1A1C1E</item>
+    </style>
+    <style name="CircleImage">
+        <item name="cornerSize">50%</item>
+    </style>
 </resources>
