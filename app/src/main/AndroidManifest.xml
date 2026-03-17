@@ -12,6 +12,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MAD_project">
         <activity
+            android:name=".DashedPathView"
+            android:exported="false" />
+        <activity
+            android:name=".FrontendActivity"
+            android:exported="false" />
+        <activity
             android:name=".EditProfileActivity"
             android:exported="false" />
         <activity

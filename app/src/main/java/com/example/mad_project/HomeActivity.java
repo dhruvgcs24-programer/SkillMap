@@ -5,6 +5,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.util.Base64;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -14,6 +15,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.*;
+import com.google.android.material.card.MaterialCardView;
 
 public class HomeActivity extends AppCompatActivity {
 
@@ -30,7 +32,8 @@ public class HomeActivity extends AppCompatActivity {
 
         mAuth = FirebaseAuth.getInstance();
         mDatabase = FirebaseDatabase.getInstance().getReference();
-
+        MaterialCardView cardFrontend;
+        cardFrontend = findViewById(R.id.cardFrontend);
         tvWelcomeUser = findViewById(R.id.tvWelcomeUser);
         ivHeaderProfile = findViewById(R.id.ivHeaderProfile);
         BottomNavigationView bottomNav = findViewById(R.id.bottomNav);
@@ -45,6 +48,14 @@ public class HomeActivity extends AppCompatActivity {
                 return true;
             }
             return true;
+        });
+
+        cardFrontend.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(HomeActivity.this, FrontendActivity.class);
+                startActivity(intent);
+            }
         });
     }
 
