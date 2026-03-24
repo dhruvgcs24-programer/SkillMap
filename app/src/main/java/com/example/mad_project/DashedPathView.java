@@ -9,33 +9,48 @@ import android.util.AttributeSet;
 import android.view.View;
 
 public class DashedPathView extends View {
+
     private Paint paint;
-    private Path path;
+    private Path path = new Path();
+    private float startX, startY, endX, endY;
 
     public DashedPathView(Context context, AttributeSet attrs) {
         super(context, attrs);
         paint = new Paint();
-        paint.setColor(0xFFE0D7FF); // Light purple/lavender
+        paint.setColor(0xFFB39DDB); // Soft Purple
         paint.setStyle(Paint.Style.STROKE);
-        paint.setStrokeWidth(12f);
+        paint.setStrokeWidth(10);
+        paint.setPathEffect(new DashPathEffect(new float[]{25, 25}, 0));
         paint.setAntiAlias(true);
-        // Creates the dashed line effect
-        paint.setPathEffect(new DashPathEffect(new float[]{30, 20}, 0));
-        path = new Path();
+    }
+
+    // This method is called by the Activity once coordinates are calculated
+    public void setPathPoints(float x1, float y1, float x2, float y2) {
+        this.startX = x1;
+        this.startY = y1;
+        this.endX = x2;
+        this.endY = y2;
+        invalidate(); // Trigger a redraw
     }
 
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        float w = getWidth();
-        float h = getHeight();
 
-        path.reset();
-        // Starts at top center
-        path.moveTo(w / 2f, 0);
-        // Creates the S-curve using Cubic Bezier points
-        path.cubicTo(w * 1.3f, h * 0.25f, -w * 0.3f, h * 0.75f, w / 2f, h);
+        // Only draw if the start and end points have been set
+        if (startY != 0 || endY != 0) {
+            path.reset();
+            path.moveTo(startX, startY);
 
-        canvas.drawPath(path, paint);
+            // Creates a smooth S-curve between the two level buttons
+            float midY = (startY + endY) / 2;
+            path.cubicTo(
+                    startX + 200, midY - 100, // Handle 1
+                    endX - 200, midY + 100,   // Handle 2
+                    endX, endY               // Destination
+            );
+
+            canvas.drawPath(path, paint);
+        }
     }
 }
