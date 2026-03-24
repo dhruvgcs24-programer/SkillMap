@@ -32,7 +32,10 @@ public class HomeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
-
+        findViewById(R.id.cardCreateRoadmap).setOnClickListener(v -> {
+            Intent intent = new Intent(HomeActivity.this, CreateRoadmapActivity.class);
+            startActivity(intent);
+        });
         mAuth = FirebaseAuth.getInstance();
 
         if (mAuth.getCurrentUser() == null) {

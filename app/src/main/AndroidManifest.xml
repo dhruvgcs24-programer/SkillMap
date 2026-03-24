@@ -12,9 +12,14 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MAD_project">
         <activity
-            android:name=".Progress"
+            android:name=".RoadmapResultActivity"
             android:exported="false" />
-        <!-- ✅ Internet screen -->
+        <activity
+            android:name=".CreateRoadmapActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Progress"
+            android:exported="false" /> <!-- ✅ Internet screen -->
         <activity android:name=".InternetActivity" /> <!-- Existing Activities -->
         <activity
             android:name=".FrontendActivity"
