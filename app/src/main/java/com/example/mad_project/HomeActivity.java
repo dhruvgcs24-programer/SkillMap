@@ -43,11 +43,14 @@ public class HomeActivity extends AppCompatActivity {
 
         bottomNav.setOnItemSelectedListener(item -> {
             int id = item.getItemId();
+
             if (id == R.id.nav_profile) {
                 startActivity(new Intent(HomeActivity.this, EditProfileActivity.class));
                 return true;
-            }
-            return true;
+            } else if (id == R.id.nav_progress) {
+                startActivity(new Intent(HomeActivity.this, Progress.class));
+                return true;
+            } else return id == R.id.nav_roadmaps;
         });
 
         cardFrontend.setOnClickListener(new View.OnClickListener() {
@@ -99,7 +102,9 @@ public class HomeActivity extends AppCompatActivity {
     }
 
     private void setupCardListeners() {
-        findViewById(R.id.cardFrontend).setOnClickListener(v -> openRoadmap("Frontend"));
+        findViewById(R.id.cardFrontend).setOnClickListener(v ->
+                startActivity(new Intent(HomeActivity.this, FrontendActivity.class)));
+
         findViewById(R.id.cardBackend).setOnClickListener(v -> openRoadmap("Backend"));
         findViewById(R.id.cardAndroid).setOnClickListener(v -> openRoadmap("Android"));
         findViewById(R.id.cardFullStack).setOnClickListener(v -> openRoadmap("Full Stack"));

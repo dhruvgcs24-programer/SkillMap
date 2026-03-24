@@ -11,41 +11,35 @@
         android:roundIcon="@mipmap/ic_launcher"
         android:supportsRtl="true"
         android:theme="@style/Theme.MAD_project">
-
+        <activity
+            android:name=".Progress"
+            android:exported="false" />
         <!-- ✅ Internet screen -->
-        <activity android:name=".InternetActivity" />
-
-        <!-- Existing Activities -->
+        <activity android:name=".InternetActivity" /> <!-- Existing Activities -->
         <activity
             android:name=".FrontendActivity"
             android:exported="false" />
-
         <activity
             android:name=".EditProfileActivity"
             android:exported="false" />
-
         <activity
             android:name=".HomeActivity"
             android:exported="false" />
-
         <activity
             android:name=".SignUpActivity"
             android:exported="false" />
-
         <activity
             android:name=".LoginActivity"
-            android:exported="false" />
-
-        <!-- 🚀 App Entry Point -->
+            android:exported="false" /> <!-- 🚀 App Entry Point -->
         <activity
             android:name=".SplashActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
     </application>
 
 </manifest>
