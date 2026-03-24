@@ -1,7 +1,21 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- Base application theme. -->
+    <!-- Base application theme for Dark Mode. -->
     <style name="Base.Theme.MAD_project" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Customize your dark theme here. -->
-        <!-- <item name="colorPrimary">@color/my_dark_primary</item> -->
+        <!-- Premium Dark Palette -->
+        <item name="colorPrimary">#A29BFE</item>
+        <item name="colorOnPrimary">#1A1C1E</item>
+
+        <item name="colorSurface">#0B0E14</item>
+        <item name="colorOnSurface">#F8F9FD</item>
+
+        <item name="colorSurfaceVariant">#161B22</item>
+        <item name="colorOnSurfaceVariant">#94A3B8</item>
+
+        <item name="colorOutline">#30363D</item>
+        <item name="android:windowBackground">#0B0E14</item>
+
+        <!-- Navigation bar color -->
+        <item name="android:navigationBarColor">#0B0E14</item>
+        <item name="android:statusBarColor">#0B0E14</item>
     </style>
 </resources>

@@ -4,68 +4,158 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F8F9FF">
+    android:background="#F8F9FD">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/transparent"
+        app:elevation="0dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="180dp"
+            android:background="@drawable/home_gradient_curved">
+
+            <ImageView
+                android:id="@+id/btnBack"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:layout_margin="16dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:padding="4dp"
+                android:src="@android:drawable/ic_menu_revert"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:tint="#FFFFFF" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="My Profile"
+                android:textColor="#FFFFFF"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.4" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.google.android.material.appbar.AppBarLayout>
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_marginTop="-40dp"
+        android:clipToPadding="false"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:padding="24dp">
+            android:paddingHorizontal="24dp"
+            android:paddingBottom="40dp">
 
+            <!-- Profile Card -->
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="24dp"
+                app:cardElevation="8dp"
+                app:cardBackgroundColor="?attr/colorSurfaceVariant"
+                app:strokeWidth="0dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:padding="24dp">
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="16dp">
+
+                        <com.google.android.material.imageview.ShapeableImageView
+                            android:id="@+id/ivProfilePic"
+                            android:layout_width="120dp"
+                            android:layout_height="120dp"
+                            android:background="?attr/colorOutline"
+                            android:padding="2dp"
+                            android:scaleType="centerCrop"
+                            android:src="@android:drawable/ic_menu_gallery"
+                            app:shapeAppearanceOverlay="@style/CircleImage"
+                            app:strokeColor="?attr/colorPrimary"
+                            app:strokeWidth="4dp" />
+
+                        <com.google.android.material.floatingactionbutton.FloatingActionButton
+                            android:id="@+id/btnChangePic"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignBottom="@id/ivProfilePic"
+                            android:layout_alignEnd="@id/ivProfilePic"
+                            android:layout_margin="2dp"
+                            android:src="@android:drawable/ic_menu_camera"
+                            app:backgroundTint="?attr/colorPrimary"
+                            app:fabSize="mini"
+                            app:tint="#FFFFFF" />
+                    </RelativeLayout>
+
+                    <TextView
+                        android:id="@+id/tvProfileName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="User Name"
+                        android:textColor="?attr/colorOnSurface"
+                        android:textSize="22sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/tvProfileEmail"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:text="user@example.com"
+                        android:textColor="?attr/colorOnSurfaceVariant"
+                        android:textSize="14sp" />
+
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- Edit Details Section -->
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Edit Profile"
-                android:textSize="28sp"
-                android:textStyle="bold"
-                android:textColor="#1A1C1E"
-                android:layout_marginBottom="32dp"/>
-
-            <RelativeLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginBottom="32dp">
-
-                <com.google.android.material.imageview.ShapeableImageView
-                    android:id="@+id/ivProfilePic"
-                    android:layout_width="130dp"
-                    android:layout_height="130dp"
-                    android:padding="2dp"
-                    android:src="@android:drawable/ic_menu_gallery"
-                    app:strokeWidth="3dp"
-                    app:strokeColor="#7C4DFF"
-                    app:shapeAppearanceOverlay="@style/CircleImage"
-                    android:scaleType="centerCrop"
-                    android:background="#E0E0E0"/>
-
-                <com.google.android.material.floatingactionbutton.FloatingActionButton
-                    android:id="@+id/btnChangePic"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignBottom="@id/ivProfilePic"
-                    android:layout_alignEnd="@id/ivProfilePic"
-                    app:fabSize="mini"
-                    android:src="@android:drawable/ic_menu_camera"
-                    app:backgroundTint="#7C4DFF"
-                    app:tint="#FFFFFF"/>
-            </RelativeLayout>
+                android:layout_marginTop="32dp"
+                android:layout_marginBottom="16dp"
+                android:text="Personal Information"
+                android:textColor="?attr/colorOnSurface"
+                android:textSize="18sp"
+                android:textStyle="bold" />
 
             <com.google.android.material.textfield.TextInputLayout
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="First Name"
-                app:boxStrokeColor="#7C4DFF"
-                app:hintTextColor="#7C4DFF">
+                app:boxCornerRadiusBottomEnd="12dp"
+                app:boxCornerRadiusBottomStart="12dp"
+                app:boxCornerRadiusTopEnd="12dp"
+                app:boxCornerRadiusTopStart="12dp"
+                app:boxStrokeColor="?attr/colorPrimary"
+                app:hintTextColor="?attr/colorPrimary"
+                app:startIconDrawable="@android:drawable/ic_menu_edit"
+                app:startIconTint="?attr/colorPrimary">
+
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/etEditFirstName"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:textColor="?attr/colorOnSurface" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -74,12 +164,21 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:hint="Phone Number"
-                app:boxStrokeColor="#7C4DFF">
+                app:boxCornerRadiusBottomEnd="12dp"
+                app:boxCornerRadiusBottomStart="12dp"
+                app:boxCornerRadiusTopEnd="12dp"
+                app:boxCornerRadiusTopStart="12dp"
+                app:boxStrokeColor="?attr/colorPrimary"
+                app:hintTextColor="?attr/colorPrimary"
+                app:startIconDrawable="@android:drawable/ic_menu_call"
+                app:startIconTint="?attr/colorPrimary">
+
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/etEditPhone"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="phone" />
+                    android:inputType="phone"
+                    android:textColor="?attr/colorOnSurface" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.button.MaterialButton
@@ -87,28 +186,27 @@
                 android:layout_width="match_parent"
                 android:layout_height="56dp"
                 android:layout_marginTop="32dp"
-                android:text="Save Changes"
+                android:backgroundTint="?attr/colorPrimary"
+                android:text="Update Profile"
                 android:textAllCaps="false"
+                android:textSize="16sp"
                 android:textStyle="bold"
                 app:cornerRadius="16dp"
-                android:backgroundTint="#7C4DFF"/>
+                app:elevation="4dp" />
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="#E0E0E0"
-                android:layout_marginTop="40dp"
-                android:layout_marginBottom="20dp"/>
-
+            <!-- Logout Section -->
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnLogout"
                 style="@style/Widget.MaterialComponents.Button.TextButton"
                 android:layout_width="match_parent"
                 android:layout_height="56dp"
-                android:text="Logout from Account"
+                android:layout_marginTop="16dp"
+                android:text="Logout Account"
                 android:textColor="#FF5252"
                 android:textAllCaps="false"
-                app:rippleColor="#20FF5252"/>
+                android:textSize="15sp"
+                android:textStyle="bold"
+                app:rippleColor="#20FF5252" />
 
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
