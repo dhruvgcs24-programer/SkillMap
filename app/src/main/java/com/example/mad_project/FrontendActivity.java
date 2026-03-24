@@ -7,18 +7,25 @@ import android.view.View;
 import android.view.ViewTreeObserver;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 
 public class FrontendActivity extends AppCompatActivity {
 
     private LinearLayout lvl1, lvl2;
-    private TextView lockText, activeText;
-    private ImageView imgLvl2;
+    private TextView lockText, activeText, txtLvl1;
+    private ImageView imgLvl1, imgLvl2, tickLvl1;
+    private CardView lockBadge, activeBadge;
     private DashedPathView dashedPathView;
     private boolean isLevel2Unlocked = false;
+
+    // Progress Bar components
+    private ProgressBar overallProgressBar;
+    private TextView overallProgressText, overallCountText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,7 +37,17 @@ public class FrontendActivity extends AppCompatActivity {
         lvl2 = findViewById(R.id.lvl2);
         lockText = findViewById(R.id.lockText);
         activeText = findViewById(R.id.activeText);
+        lockBadge = findViewById(R.id.lockBadge);
+        activeBadge = findViewById(R.id.activeBadge);
+        imgLvl1 = findViewById(R.id.imgLvl1);
         imgLvl2 = findViewById(R.id.imgLvl2);
+        txtLvl1 = findViewById(R.id.txtLvl1);
+        tickLvl1 = findViewById(R.id.tickLvl1);
+
+        // Initialize progress components
+        overallProgressBar = findViewById(R.id.overallProgressBar);
+        overallProgressText = findViewById(R.id.overallProgressText);
+        overallCountText = findViewById(R.id.overallCountText);
 
         ImageView btnBack = findViewById(R.id.btnBack);
         ImageView btnShare = findViewById(R.id.btnShare);
@@ -79,25 +96,43 @@ public class FrontendActivity extends AppCompatActivity {
     private void updateUI() {
         SharedPreferences prefs = getSharedPreferences("progress", MODE_PRIVATE);
 
-        boolean completed = prefs.getBoolean("t1", false)
-                && prefs.getBoolean("t2", false)
-                && prefs.getBoolean("t3", false)
-                && prefs.getBoolean("t4", false)
-                && prefs.getBoolean("t5", false)
-                && prefs.getBoolean("t6", false);
+        int count = 0;
+        if (prefs.getBoolean("t1", false)) count++;
+        if (prefs.getBoolean("t2", false)) count++;
+        if (prefs.getBoolean("t3", false)) count++;
+        if (prefs.getBoolean("t4", false)) count++;
+        if (prefs.getBoolean("t5", false)) count++;
+        if (prefs.getBoolean("t6", false)) count++;
 
+        // Update Progress Bar
+        overallProgressBar.setProgress(count);
+        overallCountText.setText(count + "/6 Lessons");
+        int percent = (int) ((count / 6.0) * 100);
+        overallProgressText.setText("Module Progress: " + percent + "%");
+
+        boolean completed = (count == 6);
         isLevel2Unlocked = completed;
 
         if (completed) {
             lvl2.setEnabled(true);
-            lockText.setVisibility(View.GONE);
-            activeText.setVisibility(View.VISIBLE);
+            lockBadge.setVisibility(View.GONE);
+            activeBadge.setVisibility(View.VISIBLE);
             imgLvl2.setAlpha(1.0f);
+            
+            // Show stunning success state
+            imgLvl1.setImageResource(R.drawable.circle_success);
+            txtLvl1.setVisibility(View.GONE);
+            tickLvl1.setVisibility(View.VISIBLE);
         } else {
             lvl2.setEnabled(true);
-            lockText.setVisibility(View.VISIBLE);
-            activeText.setVisibility(View.GONE);
+            lockBadge.setVisibility(View.VISIBLE);
+            activeBadge.setVisibility(View.GONE);
             imgLvl2.setAlpha(0.5f);
+
+            // Reset to initial state
+            imgLvl1.setImageResource(R.drawable.circle_purple);
+            txtLvl1.setVisibility(View.VISIBLE);
+            tickLvl1.setVisibility(View.GONE);
         }
     }
 }
