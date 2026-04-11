@@ -18,10 +18,11 @@ public class FrontendActivity extends AppCompatActivity {
 
     private LinearLayout lvl1, lvl2, lvl3, lvl4, lvl5, lvl6, lvl7, lvl8, lvl9;
     private TextView txtLvl1, txtLvl2, txtLvl7, txtLvl8, txtLvl9;
-    private ImageView imgLvl1, imgLvl2, imgLvl3, imgLvl4, imgLvl5, imgLvl6, imgLvl7, imgLvl8, imgLvl9, tickLvl1;
-    private CardView lockBadge2, activeBadge2, lockBadge3;
+    private ImageView imgLvl1, imgLvl2, imgLvl3, imgLvl4, imgLvl5, imgLvl6, imgLvl7, imgLvl8, imgLvl9, tickLvl1, tickLvl2;
+    private CardView lockBadge2, activeBadge2, lockBadge3, activeBadge3;
     private DashedPathView dashedPathView;
     private boolean isLevel2Unlocked = false;
+    private boolean isLevel3Unlocked = false;
 
     // Progress Bar components
     private ProgressBar overallProgressBar;
@@ -64,9 +65,11 @@ public class FrontendActivity extends AppCompatActivity {
         txtLvl9 = findViewById(R.id.txtLvl9);
         
         tickLvl1 = findViewById(R.id.tickLvl1);
+        tickLvl2 = findViewById(R.id.tickLvl2);
         lockBadge2 = findViewById(R.id.lockBadge2);
         activeBadge2 = findViewById(R.id.activeBadge2);
         lockBadge3 = findViewById(R.id.lockBadge3);
+        activeBadge3 = findViewById(R.id.activeBadge3);
 
         overallProgressBar = findViewById(R.id.overallProgressBar);
         overallProgressText = findViewById(R.id.overallProgressText);
@@ -78,9 +81,17 @@ public class FrontendActivity extends AppCompatActivity {
 
         lvl2.setOnClickListener(v -> {
             if (isLevel2Unlocked) {
-                Toast.makeText(this, "HTML level will be added next", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(this, HtmlActivity.class));
             } else {
                 Toast.makeText(this, "Complete all Internet topics first", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        lvl3.setOnClickListener(v -> {
+            if (isLevel3Unlocked) {
+                Toast.makeText(this, "CSS Level coming soon!", Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(this, "Complete HTML level first", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -124,47 +135,72 @@ public class FrontendActivity extends AppCompatActivity {
 
         // Track topic completion inside Level 1 (Internet)
         int internetTopicsDone = 0;
-        if (prefs.getBoolean("t1", false)) internetTopicsDone++;
-        if (prefs.getBoolean("t2", false)) internetTopicsDone++;
-        if (prefs.getBoolean("t3", false)) internetTopicsDone++;
-        if (prefs.getBoolean("t4", false)) internetTopicsDone++;
-        if (prefs.getBoolean("t5", false)) internetTopicsDone++;
-        if (prefs.getBoolean("t6", false)) internetTopicsDone++;
+        for (int i = 1; i <= 6; i++) {
+            if (prefs.getBoolean("t" + i, false)) internetTopicsDone++;
+        }
 
-        // A level is considered complete ONLY if all its topics are finished
+        // Track topic completion inside Level 2 (HTML)
+        boolean isHtmlComplete = prefs.getBoolean("h_complete", false);
+
+        // Calculate Completed Levels
         int levelsCompleted = 0;
         boolean isInternetComplete = (internetTopicsDone == 6);
         if (isInternetComplete) levelsCompleted++;
+        
+        if (isHtmlComplete) levelsCompleted++;
 
-        // Add logic for other levels here as they are implemented...
-        // if (prefs.getBoolean("html_complete", false)) levelsCompleted++;
-
-        // Update Progress Bar based on FULL levels
+        // Update Progress Bar
         overallProgressBar.setProgress(levelsCompleted);
         overallCountText.setText(levelsCompleted + "/9 Levels Completed");
         int percent = (int) ((levelsCompleted / 9.0) * 100);
         overallProgressText.setText("Roadmap Progress: " + percent + "%");
 
         isLevel2Unlocked = isInternetComplete;
+        isLevel3Unlocked = isHtmlComplete;
 
+        // Level 1 Success State
         if (isInternetComplete) {
-            lockBadge2.setVisibility(View.GONE);
-            activeBadge2.setVisibility(View.VISIBLE);
-            imgLvl2.setAlpha(1.0f);
-            
-            // Show success state for Level 1
             imgLvl1.setImageResource(R.drawable.circle_success);
             txtLvl1.setVisibility(View.GONE);
             tickLvl1.setVisibility(View.VISIBLE);
         } else {
-            lockBadge2.setVisibility(View.VISIBLE);
-            activeBadge2.setVisibility(View.GONE);
-            imgLvl2.setAlpha(0.5f);
-
-            // Reset Level 1 to initial state
             imgLvl1.setImageResource(R.drawable.circle_purple);
             txtLvl1.setVisibility(View.VISIBLE);
             tickLvl1.setVisibility(View.GONE);
+        }
+
+        // Level 2 Unlock State
+        if (isInternetComplete) {
+            lockBadge2.setVisibility(View.GONE);
+            if (isHtmlComplete) {
+                activeBadge2.setVisibility(View.GONE);
+            } else {
+                activeBadge2.setVisibility(View.VISIBLE);
+            }
+            imgLvl2.setAlpha(1.0f);
+        } else {
+            lockBadge2.setVisibility(View.VISIBLE);
+            activeBadge2.setVisibility(View.GONE);
+            imgLvl2.setAlpha(0.5f);
+        }
+        
+        // Level 2 Success State and Level 3 Unlock State
+        if (isHtmlComplete) {
+            imgLvl2.setImageResource(R.drawable.circle_success);
+            txtLvl2.setVisibility(View.GONE);
+            if (tickLvl2 != null) tickLvl2.setVisibility(View.VISIBLE);
+
+            lockBadge3.setVisibility(View.GONE);
+            activeBadge3.setVisibility(View.VISIBLE);
+            imgLvl3.setAlpha(1.0f);
+        } else {
+            imgLvl2.setImageResource(R.drawable.circle_yellow);
+            txtLvl2.setVisibility(View.VISIBLE);
+            if (tickLvl2 != null) tickLvl2.setVisibility(View.GONE);
+
+            lockBadge3.setVisibility(View.VISIBLE);
+            activeBadge3.setVisibility(View.GONE);
+            imgLvl3.setAlpha(0.5f);
         }
     }
 }

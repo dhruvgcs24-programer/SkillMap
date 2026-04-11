@@ -44,19 +44,30 @@ public class Progress extends AppCompatActivity {
 
         SharedPreferences prefs = getSharedPreferences("progress", MODE_PRIVATE);
 
-        int completed = 0;
-        if (prefs.getBoolean("t1", false)) completed++;
-        if (prefs.getBoolean("t2", false)) completed++;
-        if (prefs.getBoolean("t3", false)) completed++;
-        if (prefs.getBoolean("t4", false)) completed++;
-        if (prefs.getBoolean("t5", false)) completed++;
-        if (prefs.getBoolean("t6", false)) completed++;
+        int internetTopicsDone = 0;
+        for (int i = 1; i <= 6; i++) {
+            if (prefs.getBoolean("t" + i, false)) internetTopicsDone++;
+        }
+        boolean isHtmlComplete = prefs.getBoolean("h_complete", false);
 
-        int percent = (completed * 100) / 6;
+        int frontendLevelsCompleted = 0;
+        if (internetTopicsDone == 6) frontendLevelsCompleted++;
+        if (isHtmlComplete) frontendLevelsCompleted++;
 
-        tvPercent.setText(percent + "%");
-        tvCompleted.setText(completed + " of 6 topics completed");
-        pb1.setProgress(percent);
+        // Frontend progress (out of 9 levels)
+        int frontendPercent = (frontendLevelsCompleted * 100) / 9;
+
+        // Overall progress (6 roadmaps total: Frontend, Backend, Android, Full Stack, DevOps, AI)
+        int overallPercent = frontendPercent / 6;
+
+        int fullyCompletedTopics = 0;
+        if (frontendLevelsCompleted == 9) fullyCompletedTopics++;
+
+        tvPercent.setText(overallPercent + "%");
+        tvCompleted.setText(fullyCompletedTopics + " of 6 topics completed");
+        
+        // pb1 represents the Frontend Developer active roadmap card
+        pb1.setProgress(frontendPercent);
 
         btnContinue.setOnClickListener(v ->
                 startActivity(new Intent(Progress.this, FrontendActivity.class)));
