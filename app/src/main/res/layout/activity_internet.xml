@@ -120,6 +120,41 @@
             android:orientation="vertical"
             android:paddingHorizontal="20dp">
 
+            <!-- "What is Internet" Intro Card -->
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="4dp"
+                app:cardBackgroundColor="?attr/colorSurfaceVariant">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="20dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="What is the Internet?"
+                        android:textColor="?attr/colorPrimary"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+                        android:layout_marginBottom="12dp" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="The Internet is a global network of interconnected computers using TCP/IP protocols, connecting billions of devices worldwide. Revolutionized communication, commerce, education, and entertainment. Enables web browsing, streaming, and diverse applications while presenting privacy and security challenges."
+                        android:textColor="?attr/colorOnSurface"
+                        android:textSize="15sp"
+                        android:textStyle="bold"
+                        android:lineSpacingExtra="6dp" />
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
             <!-- Topic 1 -->
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
@@ -283,50 +318,170 @@
                 app:cardBackgroundColor="?attr/colorSurfaceVariant">
 
                 <LinearLayout
-                    android:id="@+id/topic2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal"
-                    android:padding="20dp">
-
-                    <View
-                        android:layout_width="4dp"
-                        android:layout_height="40dp"
-                        android:background="#A29BFE" />
+                    android:orientation="vertical">
 
                     <LinearLayout
-                        android:layout_width="0dp"
+                        android:id="@+id/topic2"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="16dp"
-                        android:layout_weight="1"
-                        android:orientation="vertical">
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:padding="20dp">
 
-                        <TextView
+                        <View
+                            android:layout_width="4dp"
+                            android:layout_height="40dp"
+                            android:background="#A29BFE" />
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="16dp"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Topic 02"
+                                android:textColor="#6C5CE7"
+                                android:textSize="12sp"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="2dp"
+                                android:text="What is HTTP?"
+                                android:textColor="?attr/colorOnSurface"
+                                android:textSize="17sp"
+                                android:textStyle="bold" />
+                        </LinearLayout>
+
+                        <CheckBox
+                            android:id="@+id/check2"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Topic 02"
-                            android:textColor="#6C5CE7"
-                            android:textSize="12sp"
-                            android:textStyle="bold" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="2dp"
-                            android:text="What is HTTP?"
-                            android:textColor="?attr/colorOnSurface"
-                            android:textSize="17sp"
-                            android:textStyle="bold" />
+                            android:buttonTint="#6C5CE7"
+                            android:scaleX="1.2"
+                            android:scaleY="1.2" />
                     </LinearLayout>
 
-                    <CheckBox
-                        android:id="@+id/check2"
-                        android:layout_width="wrap_content"
+                    <!-- Expandable Container for Topic 2 -->
+                    <LinearLayout
+                        android:id="@+id/expandable2"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:buttonTint="#6C5CE7"
-                        android:scaleX="1.2"
-                        android:scaleY="1.2" />
+                        android:orientation="vertical"
+                        android:paddingHorizontal="20dp"
+                        android:paddingBottom="20dp"
+                        android:visibility="gone">
+
+                        <TextView
+                            android:id="@+id/desc2"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="HTTP (Hypertext Transfer Protocol) enables browser-server communication through requests and responses. Stateless protocol using methods like GET and POST. HTTPS provides encrypted security. Newer versions (HTTP/2, HTTP/3) offer improved performance. Fundamental for web development understanding."
+                            android:textColor="?attr/colorOnSurfaceVariant"
+                            android:textSize="15sp"
+                            android:textStyle="bold"
+                            android:lineSpacingExtra="6dp"
+                            android:layout_marginBottom="16dp" />
+
+                        <!-- Link 1 -->
+                        <LinearLayout
+                            android:id="@+id/linkHttp1"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:gravity="center_vertical"
+                            android:layout_marginBottom="8dp"
+                            android:clickable="true"
+                            android:focusable="true"
+                            android:background="?attr/selectableItemBackground">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Article"
+                                android:background="#FDCB6E"
+                                android:textColor="#000000"
+                                android:paddingHorizontal="6dp"
+                                android:paddingVertical="2dp"
+                                android:textSize="12sp"
+                                android:textStyle="bold" />
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="8dp"
+                                android:text="What is HTTP?"
+                                android:textColor="?attr/colorPrimary"
+                                android:textSize="14sp"
+                                android:textStyle="bold" />
+                        </LinearLayout>
+
+                        <!-- Link 2 -->
+                        <LinearLayout
+                            android:id="@+id/linkHttp2"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:gravity="center_vertical"
+                            android:layout_marginBottom="8dp"
+                            android:clickable="true"
+                            android:focusable="true"
+                            android:background="?attr/selectableItemBackground">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Article"
+                                android:background="#FDCB6E"
+                                android:textColor="#000000"
+                                android:paddingHorizontal="6dp"
+                                android:paddingVertical="2dp"
+                                android:textSize="12sp"
+                                android:textStyle="bold" />
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="8dp"
+                                android:text="How HTTPS Works"
+                                android:textColor="?attr/colorPrimary"
+                                android:textSize="14sp"
+                                android:textStyle="bold" />
+                        </LinearLayout>
+
+                        <!-- Link 3 -->
+                        <LinearLayout
+                            android:id="@+id/linkHttp3"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:gravity="center_vertical"
+                            android:clickable="true"
+                            android:focusable="true"
+                            android:background="?attr/selectableItemBackground">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Article"
+                                android:background="#FDCB6E"
+                                android:textColor="#000000"
+                                android:paddingHorizontal="6dp"
+                                android:paddingVertical="2dp"
+                                android:textSize="12sp"
+                                android:textStyle="bold" />
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="8dp"
+                                android:text="HTTP/3 Is Now a Standard: Why Use It"
+                                android:textColor="?attr/colorPrimary"
+                                android:textSize="14sp"
+                                android:textStyle="bold" />
+                        </LinearLayout>
+                    </LinearLayout>
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
 

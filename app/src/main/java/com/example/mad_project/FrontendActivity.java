@@ -16,10 +16,10 @@ import androidx.cardview.widget.CardView;
 
 public class FrontendActivity extends AppCompatActivity {
 
-    private LinearLayout lvl1, lvl2;
-    private TextView lockText, activeText, txtLvl1;
-    private ImageView imgLvl1, imgLvl2, tickLvl1;
-    private CardView lockBadge, activeBadge;
+    private LinearLayout lvl1, lvl2, lvl3, lvl4, lvl5, lvl6, lvl7, lvl8, lvl9;
+    private TextView txtLvl1, txtLvl2, txtLvl7, txtLvl8, txtLvl9;
+    private ImageView imgLvl1, imgLvl2, imgLvl3, imgLvl4, imgLvl5, imgLvl6, imgLvl7, imgLvl8, imgLvl9, tickLvl1;
+    private CardView lockBadge2, activeBadge2, lockBadge3;
     private DashedPathView dashedPathView;
     private boolean isLevel2Unlocked = false;
 
@@ -33,37 +33,48 @@ public class FrontendActivity extends AppCompatActivity {
         setContentView(R.layout.activity_frontend);
 
         dashedPathView = findViewById(R.id.dashedPath);
+        
+        // Initialize all levels
         lvl1 = findViewById(R.id.lvl1);
         lvl2 = findViewById(R.id.lvl2);
-        lockText = findViewById(R.id.lockText);
-        activeText = findViewById(R.id.activeText);
-        lockBadge = findViewById(R.id.lockBadge);
-        activeBadge = findViewById(R.id.activeBadge);
+        lvl3 = findViewById(R.id.lvl3);
+        lvl4 = findViewById(R.id.lvl4);
+        lvl5 = findViewById(R.id.lvl5);
+        lvl6 = findViewById(R.id.lvl6);
+        lvl7 = findViewById(R.id.lvl7);
+        lvl8 = findViewById(R.id.lvl8);
+        lvl9 = findViewById(R.id.lvl9);
+
+        // Images
         imgLvl1 = findViewById(R.id.imgLvl1);
         imgLvl2 = findViewById(R.id.imgLvl2);
-        txtLvl1 = findViewById(R.id.txtLvl1);
-        tickLvl1 = findViewById(R.id.tickLvl1);
+        imgLvl3 = findViewById(R.id.imgLvl3);
+        imgLvl4 = findViewById(R.id.imgLvl4);
+        imgLvl5 = findViewById(R.id.imgLvl5);
+        imgLvl6 = findViewById(R.id.imgLvl6);
+        imgLvl7 = findViewById(R.id.imgLvl7);
+        imgLvl8 = findViewById(R.id.imgLvl8);
+        imgLvl9 = findViewById(R.id.imgLvl9);
 
-        // Initialize progress components
+        // Texts
+        txtLvl1 = findViewById(R.id.txtLvl1);
+        txtLvl2 = findViewById(R.id.txtLvl2);
+        txtLvl7 = findViewById(R.id.txtLvl7);
+        txtLvl8 = findViewById(R.id.txtLvl8);
+        txtLvl9 = findViewById(R.id.txtLvl9);
+        
+        tickLvl1 = findViewById(R.id.tickLvl1);
+        lockBadge2 = findViewById(R.id.lockBadge2);
+        activeBadge2 = findViewById(R.id.activeBadge2);
+        lockBadge3 = findViewById(R.id.lockBadge3);
+
         overallProgressBar = findViewById(R.id.overallProgressBar);
         overallProgressText = findViewById(R.id.overallProgressText);
         overallCountText = findViewById(R.id.overallCountText);
 
-        ImageView btnBack = findViewById(R.id.btnBack);
-        ImageView btnShare = findViewById(R.id.btnShare);
+        findViewById(R.id.btnBack).setOnClickListener(v -> finish());
 
-        btnBack.setOnClickListener(v -> finish());
-
-        btnShare.setOnClickListener(v -> {
-            Intent shareIntent = new Intent(Intent.ACTION_SEND);
-            shareIntent.setType("text/plain");
-            shareIntent.putExtra(Intent.EXTRA_SUBJECT, "Frontend Roadmap");
-            shareIntent.putExtra(Intent.EXTRA_TEXT, "I'm learning the Frontend roadmap in SkillMap.");
-            startActivity(Intent.createChooser(shareIntent, "Share via"));
-        });
-
-        lvl1.setOnClickListener(v ->
-                startActivity(new Intent(this, InternetActivity.class)));
+        lvl1.setOnClickListener(v -> startActivity(new Intent(this, InternetActivity.class)));
 
         lvl2.setOnClickListener(v -> {
             if (isLevel2Unlocked) {
@@ -73,18 +84,33 @@ public class FrontendActivity extends AppCompatActivity {
             }
         });
 
+        // Setup paths once laid out
         lvl1.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
             @Override
             public void onGlobalLayout() {
-                float x1 = lvl1.getX() + (lvl1.getWidth() / 2f);
-                float y1 = lvl1.getY() + (lvl1.getHeight() / 2f);
-                float x2 = lvl2.getX() + (lvl2.getWidth() / 2f);
-                float y2 = lvl2.getY() + (lvl2.getHeight() / 2f);
-
-                dashedPathView.setPathPoints(x1, y1, x2, y2);
+                setupDashedPaths();
                 lvl1.getViewTreeObserver().removeOnGlobalLayoutListener(this);
             }
         });
+    }
+
+    private void setupDashedPaths() {
+        dashedPathView.clearPoints();
+        addPoint(lvl1);
+        addPoint(lvl2);
+        addPoint(lvl3);
+        addPoint(lvl4);
+        addPoint(lvl5);
+        addPoint(lvl6);
+        addPoint(lvl7);
+        addPoint(lvl8);
+        addPoint(lvl9);
+    }
+
+    private void addPoint(View view) {
+        float x = view.getX() + (view.getWidth() / 2f);
+        float y = view.getY() + (view.getHeight() / 2f);
+        dashedPathView.addPathPoint(x, y);
     }
 
     @Override
@@ -96,40 +122,46 @@ public class FrontendActivity extends AppCompatActivity {
     private void updateUI() {
         SharedPreferences prefs = getSharedPreferences("progress", MODE_PRIVATE);
 
-        int count = 0;
-        if (prefs.getBoolean("t1", false)) count++;
-        if (prefs.getBoolean("t2", false)) count++;
-        if (prefs.getBoolean("t3", false)) count++;
-        if (prefs.getBoolean("t4", false)) count++;
-        if (prefs.getBoolean("t5", false)) count++;
-        if (prefs.getBoolean("t6", false)) count++;
+        // Track topic completion inside Level 1 (Internet)
+        int internetTopicsDone = 0;
+        if (prefs.getBoolean("t1", false)) internetTopicsDone++;
+        if (prefs.getBoolean("t2", false)) internetTopicsDone++;
+        if (prefs.getBoolean("t3", false)) internetTopicsDone++;
+        if (prefs.getBoolean("t4", false)) internetTopicsDone++;
+        if (prefs.getBoolean("t5", false)) internetTopicsDone++;
+        if (prefs.getBoolean("t6", false)) internetTopicsDone++;
 
-        // Update Progress Bar
-        overallProgressBar.setProgress(count);
-        overallCountText.setText(count + "/6 Lessons");
-        int percent = (int) ((count / 6.0) * 100);
-        overallProgressText.setText("Module Progress: " + percent + "%");
+        // A level is considered complete ONLY if all its topics are finished
+        int levelsCompleted = 0;
+        boolean isInternetComplete = (internetTopicsDone == 6);
+        if (isInternetComplete) levelsCompleted++;
 
-        boolean completed = (count == 6);
-        isLevel2Unlocked = completed;
+        // Add logic for other levels here as they are implemented...
+        // if (prefs.getBoolean("html_complete", false)) levelsCompleted++;
 
-        if (completed) {
-            lvl2.setEnabled(true);
-            lockBadge.setVisibility(View.GONE);
-            activeBadge.setVisibility(View.VISIBLE);
+        // Update Progress Bar based on FULL levels
+        overallProgressBar.setProgress(levelsCompleted);
+        overallCountText.setText(levelsCompleted + "/9 Levels Completed");
+        int percent = (int) ((levelsCompleted / 9.0) * 100);
+        overallProgressText.setText("Roadmap Progress: " + percent + "%");
+
+        isLevel2Unlocked = isInternetComplete;
+
+        if (isInternetComplete) {
+            lockBadge2.setVisibility(View.GONE);
+            activeBadge2.setVisibility(View.VISIBLE);
             imgLvl2.setAlpha(1.0f);
             
-            // Show stunning success state
+            // Show success state for Level 1
             imgLvl1.setImageResource(R.drawable.circle_success);
             txtLvl1.setVisibility(View.GONE);
             tickLvl1.setVisibility(View.VISIBLE);
         } else {
-            lvl2.setEnabled(true);
-            lockBadge.setVisibility(View.VISIBLE);
-            activeBadge.setVisibility(View.GONE);
+            lockBadge2.setVisibility(View.VISIBLE);
+            activeBadge2.setVisibility(View.GONE);
             imgLvl2.setAlpha(0.5f);
 
-            // Reset to initial state
+            // Reset Level 1 to initial state
             imgLvl1.setImageResource(R.drawable.circle_purple);
             txtLvl1.setVisibility(View.VISIBLE);
             tickLvl1.setVisibility(View.GONE);

@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:background="#F8F9FD">
 
-    <!-- Premium Header with Progress -->
+    <!-- Premium Header -->
     <FrameLayout
         android:id="@+id/headerContainer"
         android:layout_width="match_parent"
@@ -73,7 +73,7 @@
                         android:id="@+id/overallProgressText"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Module Progress: 0%"
+                        android:text="Roadmap Progress: 0%"
                         android:textColor="#FFFFFF"
                         android:textSize="13sp"
                         android:textStyle="bold" />
@@ -83,7 +83,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentEnd="true"
-                        android:text="0/6 Lessons"
+                        android:text="0/9 Levels"
                         android:textColor="#FFFFFF"
                         android:textSize="13sp" />
                 </RelativeLayout>
@@ -93,7 +93,7 @@
                     style="@android:style/Widget.ProgressBar.Horizontal"
                     android:layout_width="match_parent"
                     android:layout_height="10dp"
-                    android:max="6"
+                    android:max="9"
                     android:progress="0"
                     android:progressDrawable="@android:drawable/progress_horizontal"
                     android:progressTint="#55EFC4" />
@@ -118,153 +118,139 @@
             <com.example.mad_project.DashedPathView
                 android:id="@+id/dashedPath"
                 android:layout_width="match_parent"
-                android:layout_height="1200dp" />
+                android:layout_height="2800dp" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center_horizontal"
                 android:orientation="vertical"
-                android:paddingTop="40dp">
+                android:paddingTop="40dp"
+                android:paddingBottom="100dp">
 
                 <!-- Level 1: Internet -->
-                <LinearLayout
-                    android:id="@+id/lvl1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:clickable="true"
-                    android:focusable="true"
-                    android:gravity="center"
-                    android:orientation="vertical">
-
-                    <FrameLayout
-                        android:layout_width="110dp"
-                        android:layout_height="110dp">
-
-                        <ImageView
-                            android:id="@+id/imgLvl1"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:scaleType="centerCrop"
-                            android:src="@drawable/circle_purple"
-                            android:elevation="4dp" />
-
-                        <TextView
-                            android:id="@+id/txtLvl1"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:text="1"
-                            android:textColor="#FFFFFF"
-                            android:textSize="36sp"
-                            android:textStyle="bold"
-                            android:elevation="5dp" />
-
-                        <ImageView
-                            android:id="@+id/tickLvl1"
-                            android:layout_width="60dp"
-                            android:layout_height="60dp"
-                            android:layout_gravity="center"
-                            android:src="@drawable/ic_check_rounded"
-                            android:visibility="gone"
-                            android:elevation="5dp"
-                            app:tint="#FFFFFF" />
+                <LinearLayout android:id="@+id/lvl1" android:layout_width="wrap_content" android:layout_height="wrap_content" android:gravity="center" android:orientation="vertical" android:clickable="true" android:focusable="true">
+                    <FrameLayout android:layout_width="100dp" android:layout_height="100dp">
+                        <ImageView android:id="@+id/imgLvl1" android:layout_width="match_parent" android:layout_height="match_parent" android:src="@drawable/circle_purple" android:elevation="4dp" />
+                        <TextView android:id="@+id/txtLvl1" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_gravity="center" android:text="1" android:textColor="#FFFFFF" android:textSize="32sp" android:textStyle="bold" android:elevation="5dp" />
+                        <ImageView android:id="@+id/tickLvl1" android:layout_width="56dp" android:layout_height="56dp" android:layout_gravity="center" android:src="@drawable/ic_check_rounded" android:visibility="gone" android:elevation="5dp" app:tint="#FFFFFF" />
                     </FrameLayout>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="16dp"
-                        android:text="Internet"
-                        android:textColor="#2D3436"
-                        android:textSize="20sp"
-                        android:textStyle="bold" />
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="12dp" android:text="Internet" android:textColor="#2D3436" android:textSize="18sp" android:textStyle="bold" />
                 </LinearLayout>
 
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="220dp" />
+                <View android:layout_width="match_parent" android:layout_height="180dp" />
 
                 <!-- Level 2: HTML -->
-                <LinearLayout
-                    android:id="@+id/lvl2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:orientation="vertical">
-
-                    <!-- Styled Badges -->
-                    <androidx.cardview.widget.CardView
-                        android:id="@+id/lockBadge"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        app:cardBackgroundColor="#2D3436"
-                        app:cardCornerRadius="16dp"
-                        app:cardElevation="2dp">
-                        <TextView
-                            android:id="@+id/lockText"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:paddingHorizontal="12dp"
-                            android:paddingVertical="6dp"
-                            android:text="LOCKED"
-                            android:textColor="#FFFFFF"
-                            android:textSize="11sp"
-                            android:textStyle="bold" />
+                <LinearLayout android:id="@+id/lvl2" android:layout_width="wrap_content" android:layout_height="wrap_content" android:gravity="center" android:orientation="vertical">
+                    <androidx.cardview.widget.CardView android:id="@+id/lockBadge2" android:layout_width="wrap_content" android:layout_height="wrap_content" app:cardBackgroundColor="#2D3436" app:cardCornerRadius="12dp">
+                        <TextView android:id="@+id/lockText2" android:layout_width="wrap_content" android:layout_height="wrap_content" android:paddingHorizontal="10dp" android:paddingVertical="4dp" android:text="LOCKED" android:textColor="#FFFFFF" android:textSize="10sp" android:textStyle="bold" />
                     </androidx.cardview.widget.CardView>
-
-                    <androidx.cardview.widget.CardView
-                        android:id="@+id/activeBadge"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:visibility="gone"
-                        app:cardBackgroundColor="#6C5CE7"
-                        app:cardCornerRadius="16dp"
-                        app:cardElevation="2dp">
-                        <TextView
-                            android:id="@+id/activeText"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:paddingHorizontal="12dp"
-                            android:paddingVertical="6dp"
-                            android:text="ACTIVE"
-                            android:textColor="#FFFFFF"
-                            android:textSize="11sp"
-                            android:textStyle="bold" />
+                    <androidx.cardview.widget.CardView android:id="@+id/activeBadge2" android:layout_width="wrap_content" android:layout_height="wrap_content" android:visibility="gone" app:cardBackgroundColor="#6C5CE7" app:cardCornerRadius="12dp">
+                        <TextView android:id="@+id/activeText2" android:layout_width="wrap_content" android:layout_height="wrap_content" android:paddingHorizontal="10dp" android:paddingVertical="4dp" android:text="ACTIVE" android:textColor="#FFFFFF" android:textSize="10sp" android:textStyle="bold" />
                     </androidx.cardview.widget.CardView>
-
-                    <FrameLayout
-                        android:layout_width="130dp"
-                        android:layout_height="130dp"
-                        android:layout_marginTop="12dp">
-
-                        <ImageView
-                            android:id="@+id/imgLvl2"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:scaleType="centerCrop"
-                            android:src="@drawable/circle_yellow"
-                            android:elevation="4dp" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:text="2"
-                            android:textColor="#2D3436"
-                            android:textSize="40sp"
-                            android:textStyle="bold"
-                            android:elevation="5dp" />
+                    <FrameLayout android:layout_width="100dp" android:layout_height="100dp" android:layout_marginTop="8dp">
+                        <ImageView android:id="@+id/imgLvl2" android:layout_width="match_parent" android:layout_height="match_parent" android:src="@drawable/circle_yellow" android:elevation="4dp" />
+                        <TextView android:id="@+id/txtLvl2" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_gravity="center" android:text="2" android:textColor="#2D3436" android:textSize="32sp" android:textStyle="bold" android:elevation="5dp" />
                     </FrameLayout>
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="12dp" android:text="HTML" android:textColor="#2D3436" android:textSize="18sp" android:textStyle="bold" />
+                </LinearLayout>
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="16dp"
-                        android:text="HTML"
-                        android:textColor="#2D3436"
-                        android:textSize="20sp"
-                        android:textStyle="bold" />
+                <View android:layout_width="match_parent" android:layout_height="180dp" />
+
+                <!-- Level 3: CSS -->
+                <LinearLayout android:id="@+id/lvl3" android:layout_width="wrap_content" android:layout_height="wrap_content" android:gravity="center" android:orientation="vertical">
+                    <androidx.cardview.widget.CardView android:id="@+id/lockBadge3" android:layout_width="wrap_content" android:layout_height="wrap_content" app:cardBackgroundColor="#2D3436" app:cardCornerRadius="12dp">
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:paddingHorizontal="10dp" android:paddingVertical="4dp" android:text="LOCKED" android:textColor="#FFFFFF" android:textSize="10sp" android:textStyle="bold" />
+                    </androidx.cardview.widget.CardView>
+                    <FrameLayout android:layout_width="100dp" android:layout_height="100dp" android:layout_marginTop="8dp">
+                        <ImageView android:id="@+id/imgLvl3" android:layout_width="match_parent" android:layout_height="match_parent" android:src="@drawable/circle_yellow" android:elevation="4dp" android:alpha="0.5"/>
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_gravity="center" android:text="3" android:textColor="#2D3436" android:textSize="32sp" android:textStyle="bold" android:elevation="5dp" />
+                    </FrameLayout>
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="12dp" android:text="CSS" android:textColor="#2D3436" android:textSize="18sp" android:textStyle="bold" />
+                </LinearLayout>
+
+                <View android:layout_width="match_parent" android:layout_height="180dp" />
+
+                <!-- Level 4: JavaScript -->
+                <LinearLayout android:id="@+id/lvl4" android:layout_width="wrap_content" android:layout_height="wrap_content" android:gravity="center" android:orientation="vertical">
+                    <androidx.cardview.widget.CardView android:layout_width="wrap_content" android:layout_height="wrap_content" app:cardBackgroundColor="#2D3436" app:cardCornerRadius="12dp">
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:paddingHorizontal="10dp" android:paddingVertical="4dp" android:text="LOCKED" android:textColor="#FFFFFF" android:textSize="10sp" android:textStyle="bold" />
+                    </androidx.cardview.widget.CardView>
+                    <FrameLayout android:layout_width="100dp" android:layout_height="100dp" android:layout_marginTop="8dp">
+                        <ImageView android:id="@+id/imgLvl4" android:layout_width="match_parent" android:layout_height="match_parent" android:src="@drawable/circle_yellow" android:elevation="4dp" android:alpha="0.5"/>
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_gravity="center" android:text="4" android:textColor="#2D3436" android:textSize="32sp" android:textStyle="bold" android:elevation="5dp" />
+                    </FrameLayout>
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="12dp" android:text="JavaScript" android:textColor="#2D3436" android:textSize="18sp" android:textStyle="bold" />
+                </LinearLayout>
+
+                <View android:layout_width="match_parent" android:layout_height="180dp" />
+
+                <!-- Level 5: Version Control -->
+                <LinearLayout android:id="@+id/lvl5" android:layout_width="wrap_content" android:layout_height="wrap_content" android:gravity="center" android:orientation="vertical">
+                    <androidx.cardview.widget.CardView android:layout_width="wrap_content" android:layout_height="wrap_content" app:cardBackgroundColor="#2D3436" app:cardCornerRadius="12dp">
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:paddingHorizontal="10dp" android:paddingVertical="4dp" android:text="LOCKED" android:textColor="#FFFFFF" android:textSize="10sp" android:textStyle="bold" />
+                    </androidx.cardview.widget.CardView>
+                    <FrameLayout android:layout_width="100dp" android:layout_height="100dp" android:layout_marginTop="8dp">
+                        <ImageView android:id="@+id/imgLvl5" android:layout_width="match_parent" android:layout_height="match_parent" android:src="@drawable/circle_yellow" android:elevation="4dp" android:alpha="0.5"/>
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_gravity="center" android:text="5" android:textColor="#2D3436" android:textSize="32sp" android:textStyle="bold" android:elevation="5dp" />
+                    </FrameLayout>
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="12dp" android:text="Version Control" android:textColor="#2D3436" android:textSize="18sp" android:textStyle="bold" />
+                </LinearLayout>
+
+                <View android:layout_width="match_parent" android:layout_height="180dp" />
+
+                <!-- Level 6: VCS Hosting -->
+                <LinearLayout android:id="@+id/lvl6" android:layout_width="wrap_content" android:layout_height="wrap_content" android:gravity="center" android:orientation="vertical">
+                    <androidx.cardview.widget.CardView android:layout_width="wrap_content" android:layout_height="wrap_content" app:cardBackgroundColor="#2D3436" app:cardCornerRadius="12dp">
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:paddingHorizontal="10dp" android:paddingVertical="4dp" android:text="LOCKED" android:textColor="#FFFFFF" android:textSize="10sp" android:textStyle="bold" />
+                    </androidx.cardview.widget.CardView>
+                    <FrameLayout android:layout_width="100dp" android:layout_height="100dp" android:layout_marginTop="8dp">
+                        <ImageView android:id="@+id/imgLvl6" android:layout_width="match_parent" android:layout_height="match_parent" android:src="@drawable/circle_yellow" android:elevation="4dp" android:alpha="0.5"/>
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_gravity="center" android:text="6" android:textColor="#2D3436" android:textSize="32sp" android:textStyle="bold" android:elevation="5dp" />
+                    </FrameLayout>
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="12dp" android:text="VCS Hosting" android:textColor="#2D3436" android:textSize="18sp" android:textStyle="bold" />
+                </LinearLayout>
+
+                <View android:layout_width="match_parent" android:layout_height="180dp" />
+
+                <!-- Level 7: Package Managers -->
+                <LinearLayout android:id="@+id/lvl7" android:layout_width="wrap_content" android:layout_height="wrap_content" android:gravity="center" android:orientation="vertical">
+                    <androidx.cardview.widget.CardView android:layout_width="wrap_content" android:layout_height="wrap_content" app:cardBackgroundColor="#2D3436" app:cardCornerRadius="12dp">
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:paddingHorizontal="10dp" android:paddingVertical="4dp" android:text="LOCKED" android:textColor="#FFFFFF" android:textSize="10sp" android:textStyle="bold" />
+                    </androidx.cardview.widget.CardView>
+                    <FrameLayout android:layout_width="100dp" android:layout_height="100dp" android:layout_marginTop="8dp">
+                        <ImageView android:id="@+id/imgLvl7" android:layout_width="match_parent" android:layout_height="match_parent" android:src="@drawable/circle_yellow" android:elevation="4dp" android:alpha="0.5"/>
+                        <TextView android:id="@+id/txtLvl7" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_gravity="center" android:text="7" android:textColor="#2D3436" android:textSize="32sp" android:textStyle="bold" android:elevation="5dp" />
+                    </FrameLayout>
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="12dp" android:text="Package Managers" android:textColor="#2D3436" android:textSize="18sp" android:textStyle="bold" />
+                </LinearLayout>
+
+                <View android:layout_width="match_parent" android:layout_height="180dp" />
+
+                <!-- Level 8: CSS Frameworks -->
+                <LinearLayout android:id="@+id/lvl8" android:layout_width="wrap_content" android:layout_height="wrap_content" android:gravity="center" android:orientation="vertical">
+                    <androidx.cardview.widget.CardView android:layout_width="wrap_content" android:layout_height="wrap_content" app:cardBackgroundColor="#2D3436" app:cardCornerRadius="12dp">
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:paddingHorizontal="10dp" android:paddingVertical="4dp" android:text="LOCKED" android:textColor="#FFFFFF" android:textSize="10sp" android:textStyle="bold" />
+                    </androidx.cardview.widget.CardView>
+                    <FrameLayout android:layout_width="100dp" android:layout_height="100dp" android:layout_marginTop="8dp">
+                        <ImageView android:id="@+id/imgLvl8" android:layout_width="match_parent" android:layout_height="match_parent" android:src="@drawable/circle_yellow" android:elevation="4dp" android:alpha="0.5"/>
+                        <TextView android:id="@+id/txtLvl8" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_gravity="center" android:text="8" android:textColor="#2D3436" android:textSize="32sp" android:textStyle="bold" android:elevation="5dp" />
+                    </FrameLayout>
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="12dp" android:text="CSS Frameworks" android:textColor="#2D3436" android:textSize="18sp" android:textStyle="bold" />
+                </LinearLayout>
+
+                <View android:layout_width="match_parent" android:layout_height="180dp" />
+
+                <!-- Level 9: Learn a Framework -->
+                <LinearLayout android:id="@+id/lvl9" android:layout_width="wrap_content" android:layout_height="wrap_content" android:gravity="center" android:orientation="vertical">
+                    <androidx.cardview.widget.CardView android:layout_width="wrap_content" android:layout_height="wrap_content" app:cardBackgroundColor="#2D3436" app:cardCornerRadius="12dp">
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:paddingHorizontal="10dp" android:paddingVertical="4dp" android:text="LOCKED" android:textColor="#FFFFFF" android:textSize="10sp" android:textStyle="bold" />
+                    </androidx.cardview.widget.CardView>
+                    <FrameLayout android:layout_width="100dp" android:layout_height="100dp" android:layout_marginTop="8dp">
+                        <ImageView android:id="@+id/imgLvl9" android:layout_width="match_parent" android:layout_height="match_parent" android:src="@drawable/circle_yellow" android:elevation="4dp" android:alpha="0.5"/>
+                        <TextView android:id="@+id/txtLvl9" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_gravity="center" android:text="9" android:textColor="#2D3436" android:textSize="32sp" android:textStyle="bold" android:elevation="5dp" />
+                    </FrameLayout>
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="12dp" android:text="Learn a Framework" android:textColor="#2D3436" android:textSize="18sp" android:textStyle="bold" />
                 </LinearLayout>
 
             </LinearLayout>

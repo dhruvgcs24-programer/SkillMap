@@ -8,11 +8,22 @@ import android.graphics.Path;
 import android.util.AttributeSet;
 import android.view.View;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class DashedPathView extends View {
 
     private Paint paint;
     private Path path = new Path();
-    private float startX, startY, endX, endY;
+    private List<Point> points = new ArrayList<>();
+
+    private static class Point {
+        float x, y;
+        Point(float x, float y) {
+            this.x = x;
+            this.y = y;
+        }
+    }
 
     public DashedPathView(Context context, AttributeSet attrs) {
         super(context, attrs);
@@ -24,33 +35,41 @@ public class DashedPathView extends View {
         paint.setAntiAlias(true);
     }
 
-    // This method is called by the Activity once coordinates are calculated
-    public void setPathPoints(float x1, float y1, float x2, float y2) {
-        this.startX = x1;
-        this.startY = y1;
-        this.endX = x2;
-        this.endY = y2;
-        invalidate(); // Trigger a redraw
+    public void clearPoints() {
+        points.clear();
+        invalidate();
+    }
+
+    public void addPathPoint(float x, float y) {
+        points.add(new Point(x, y));
+        invalidate();
     }
 
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
 
-        // Only draw if the start and end points have been set
-        if (startY != 0 || endY != 0) {
-            path.reset();
-            path.moveTo(startX, startY);
+        if (points.size() < 2) return;
 
-            // Creates a smooth S-curve between the two level buttons
-            float midY = (startY + endY) / 2;
+        path.reset();
+        Point first = points.get(0);
+        path.moveTo(first.x, first.y);
+
+        for (int i = 0; i < points.size() - 1; i++) {
+            Point start = points.get(i);
+            Point end = points.get(i + 1);
+
+            float midY = (start.y + end.y) / 2;
+            // Alternate curve direction for a nice snake effect
+            float offset = (i % 2 == 0) ? 200 : -200;
+            
             path.cubicTo(
-                    startX + 200, midY - 100, // Handle 1
-                    endX - 200, midY + 100,   // Handle 2
-                    endX, endY               // Destination
+                    start.x + offset, midY - 100,
+                    end.x - offset, midY + 100,
+                    end.x, end.y
             );
-
-            canvas.drawPath(path, paint);
         }
+
+        canvas.drawPath(path, paint);
     }
 }
