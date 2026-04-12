@@ -50,11 +50,13 @@ public class Progress extends AppCompatActivity {
         }
         boolean isHtmlComplete = prefs.getBoolean("h_complete", false);
         boolean isCssComplete = prefs.getBoolean("c_complete", false);
+        boolean isJsComplete = prefs.getBoolean("j_complete", false);
 
         int frontendLevelsCompleted = 0;
         if (internetTopicsDone == 6) frontendLevelsCompleted++;
         if (isHtmlComplete) frontendLevelsCompleted++;
         if (isCssComplete) frontendLevelsCompleted++;
+        if (isJsComplete) frontendLevelsCompleted++;
 
         // Frontend progress (out of 9 levels)
         int frontendPercent = (frontendLevelsCompleted * 100) / 9;
@@ -78,8 +80,10 @@ public class Progress extends AppCompatActivity {
             tvNextTopic.setText("Next: HTML Basics");
         } else if (!isCssComplete) {
             tvNextTopic.setText("Next: CSS Basics");
-        } else {
+        } else if (!isJsComplete) {
             tvNextTopic.setText("Next: JavaScript");
+        } else {
+            tvNextTopic.setText("Next: Version Control");
         }
 
         btnContinue.setOnClickListener(v ->

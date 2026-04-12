@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="?attr/colorSurface"
+    android:orientation="vertical">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="220dp">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/home_gradient" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="20dp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:id="@+id/btnBack"
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:padding="4dp"
+                    android:src="@android:drawable/ic_menu_revert"
+                    app:tint="#FFFFFF" />
+
+                <ImageView
+                    android:id="@+id/btnThemeToggle"
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:layout_alignParentEnd="true"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:padding="4dp"
+                    android:src="@android:drawable/ic_menu_compass"
+                    app:tint="#FFFFFF" />
+            </RelativeLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="JavaScript"
+                android:textColor="#FFFFFF"
+                android:textSize="26sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="Make websites interactive"
+                android:textColor="#E0E0E0"
+                android:textSize="14sp" />
+
+        </LinearLayout>
+    </FrameLayout>
+
+    <ScrollView
+        android:id="@+id/mainScrollView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="-30dp"
+        android:clipToPadding="false"
+        android:paddingBottom="20dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingHorizontal="20dp">
+
+            <!-- "Mark Level" Logic Card -->
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="2dp"
+                app:cardBackgroundColor="?attr/colorSurfaceVariant">
+
+                <LinearLayout
+                    android:id="@+id/btnCompleteJavascript"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:padding="16dp"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:background="?attr/selectableItemBackground">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Mark JavaScript Level as Completed"
+                        android:textColor="?attr/colorPrimary"
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
+
+                    <CheckBox
+                        android:id="@+id/checkJavascriptComplete"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:buttonTint="?attr/colorPrimary" />
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <!-- JavaScript Content Card -->
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="4dp"
+                app:cardBackgroundColor="?attr/colorSurfaceVariant">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="24dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="What is JavaScript?"
+                        android:textColor="?attr/colorPrimary"
+                        android:textSize="20sp"
+                        android:textStyle="bold"
+                        android:layout_marginBottom="16dp" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="JavaScript is a versatile programming language that makes websites interactive. Runs in browsers, servers (Node.js), and desktop applications. Features dynamic typing, event-driven programming, and constant evolution. Essential for modern web development across frontend and backend."
+                        android:textColor="?attr/colorOnSurface"
+                        android:textSize="16sp"
+                        android:lineSpacingExtra="6dp"
+                        android:layout_marginBottom="24dp" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="?attr/colorOutlineVariant"
+                        android:layout_marginBottom="24dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Learning Resources"
+                        android:textColor="?attr/colorOnSurface"
+                        android:textSize="14sp"
+                        android:textStyle="bold"
+                        android:layout_marginBottom="16dp" />
+
+                    <!-- Roadmap Link -->
+                    <LinearLayout android:id="@+id/linkJavascriptRoadmap" android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:gravity="center_vertical" android:layout_marginBottom="12dp" android:background="?attr/selectableItemBackground" android:padding="4dp" android:clickable="true" android:focusable="true">
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Roadmap" android:background="#000000" android:textColor="#FFFFFF" android:paddingHorizontal="8dp" android:paddingVertical="4dp" android:textSize="11sp" android:textStyle="bold" android:layout_marginEnd="12dp" />
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Visit Dedicated JavaScript Roadmap" android:textColor="?attr/colorPrimary" android:textStyle="bold" />
+                    </LinearLayout>
+
+                    <!-- Article Link 1 -->
+                    <LinearLayout android:id="@+id/linkJavascriptArticle1" android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:gravity="center_vertical" android:layout_marginBottom="12dp" android:background="?attr/selectableItemBackground" android:padding="4dp" android:clickable="true" android:focusable="true">
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Article" android:background="#FDCB6E" android:textColor="#000000" android:paddingHorizontal="8dp" android:paddingVertical="4dp" android:textSize="11sp" android:textStyle="bold" android:layout_marginEnd="12dp" />
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="The Modern JavaScript Tutorial" android:textColor="?attr/colorPrimary" android:textStyle="bold" />
+                    </LinearLayout>
+
+                    <!-- Article Link 2 -->
+                    <LinearLayout android:id="@+id/linkJavascriptArticle2" android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:gravity="center_vertical" android:layout_marginBottom="12dp" android:background="?attr/selectableItemBackground" android:padding="4dp" android:clickable="true" android:focusable="true">
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Article" android:background="#FDCB6E" android:textColor="#000000" android:paddingHorizontal="8dp" android:paddingVertical="4dp" android:textSize="11sp" android:textStyle="bold" android:layout_marginEnd="12dp" />
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Build 30 Javascript projects in 30 days" android:textColor="?attr/colorPrimary" android:textStyle="bold" />
+                    </LinearLayout>
+
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>
