@@ -54,6 +54,7 @@ public class Progress extends AppCompatActivity {
         boolean isVcComplete = prefs.getBoolean("vc1", false);
         boolean isVcsComplete = prefs.getBoolean("vcs1", false) && prefs.getBoolean("vcs2", false);
         boolean isPmComplete = prefs.getBoolean("pm1", false) && prefs.getBoolean("pm2", false) && prefs.getBoolean("pm3", false) && prefs.getBoolean("pm4", false);
+        boolean isCssfComplete = prefs.getBoolean("cssf1", false);
 
         int frontendLevelsCompleted = 0;
         if (internetTopicsDone == 6) frontendLevelsCompleted++;
@@ -63,6 +64,7 @@ public class Progress extends AppCompatActivity {
         if (isVcComplete) frontendLevelsCompleted++;
         if (isVcsComplete) frontendLevelsCompleted++;
         if (isPmComplete) frontendLevelsCompleted++;
+        if (isCssfComplete) frontendLevelsCompleted++;
 
         // Frontend progress (out of 9 levels)
         int frontendPercent = (frontendLevelsCompleted * 100) / 9;
@@ -94,8 +96,10 @@ public class Progress extends AppCompatActivity {
             tvNextTopic.setText("Next: VCS Hosting");
         } else if (!isPmComplete) {
             tvNextTopic.setText("Next: Package Managers");
-        } else {
+        } else if (!isCssfComplete) {
             tvNextTopic.setText("Next: CSS Frameworks");
+        } else {
+            tvNextTopic.setText("Next: Learn a Framework");
         }
 
         btnContinue.setOnClickListener(v ->
