@@ -52,6 +52,7 @@ public class Progress extends AppCompatActivity {
         boolean isCssComplete = prefs.getBoolean("c_complete", false);
         boolean isJsComplete = prefs.getBoolean("j_complete", false);
         boolean isVcComplete = prefs.getBoolean("vc1", false);
+        boolean isVcsComplete = prefs.getBoolean("vcs1", false) && prefs.getBoolean("vcs2", false);
 
         int frontendLevelsCompleted = 0;
         if (internetTopicsDone == 6) frontendLevelsCompleted++;
@@ -59,6 +60,7 @@ public class Progress extends AppCompatActivity {
         if (isCssComplete) frontendLevelsCompleted++;
         if (isJsComplete) frontendLevelsCompleted++;
         if (isVcComplete) frontendLevelsCompleted++;
+        if (isVcsComplete) frontendLevelsCompleted++;
 
         // Frontend progress (out of 9 levels)
         int frontendPercent = (frontendLevelsCompleted * 100) / 9;
@@ -86,6 +88,8 @@ public class Progress extends AppCompatActivity {
             tvNextTopic.setText("Next: JavaScript");
         } else if (!isVcComplete) {
             tvNextTopic.setText("Next: Version Control");
+        } else if (!isVcsComplete) {
+            tvNextTopic.setText("Next: VCS Hosting");
         } else {
             tvNextTopic.setText("Next: Package Managers");
         }

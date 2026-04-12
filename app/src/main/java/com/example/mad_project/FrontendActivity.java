@@ -19,13 +19,14 @@ public class FrontendActivity extends AppCompatActivity {
     private LinearLayout lvl1, lvl2, lvl3, lvl4, lvl5, lvl6, lvl7, lvl8, lvl9;
     private TextView txtLvl1, txtLvl2, txtLvl3, txtLvl4, txtLvl5, txtLvl6, txtLvl7, txtLvl8, txtLvl9;
     private ImageView imgLvl1, imgLvl2, imgLvl3, imgLvl4, imgLvl5, imgLvl6, imgLvl7, imgLvl8, imgLvl9, tickLvl1, tickLvl2, tickLvl3, tickLvl4, tickLvl5, tickLvl6, tickLvl7, tickLvl8, tickLvl9;
-    private CardView lockBadge2, activeBadge2, lockBadge3, activeBadge3, lockBadge4, activeBadge4, lockBadge5, activeBadge5,  lockBadge6, activeBadge6, lockBadge7, lockBadge8, lockBadge9;
+    private CardView lockBadge2, activeBadge2, lockBadge3, activeBadge3, lockBadge4, activeBadge4, lockBadge5, activeBadge5,  lockBadge6, activeBadge6, lockBadge7, activeBadge7, lockBadge8, lockBadge9;
     private DashedPathView dashedPathView;
     private boolean isLevel2Unlocked = false;
     private boolean isLevel3Unlocked = false;
     private boolean isLevel4Unlocked = false;
     private boolean isLevel5Unlocked = false;
     private boolean isLevel6Unlocked = false;
+    private boolean isLevel7Unlocked = false;
 
     // Progress Bar components
     private ProgressBar overallProgressBar;
@@ -77,6 +78,7 @@ public class FrontendActivity extends AppCompatActivity {
         tickLvl4 = findViewById(R.id.tickLvl4);
         tickLvl5 = findViewById(R.id.tickLvl5);
         tickLvl6 = findViewById(R.id.tickLvl6);
+        tickLvl7 = findViewById(R.id.tickLvl7);
 
         lockBadge2 = findViewById(R.id.lockBadge2);
         activeBadge2 = findViewById(R.id.activeBadge2);
@@ -88,6 +90,8 @@ public class FrontendActivity extends AppCompatActivity {
         activeBadge5 = findViewById(R.id.activeBadge5);
         lockBadge6 = findViewById(R.id.lockBadge6);
         activeBadge6 = findViewById(R.id.activeBadge6);
+        lockBadge7 = findViewById(R.id.lockBadge7);
+        activeBadge7 = findViewById(R.id.activeBadge7);
 
         overallProgressBar = findViewById(R.id.overallProgressBar);
         overallProgressText = findViewById(R.id.overallProgressText);
@@ -131,9 +135,17 @@ public class FrontendActivity extends AppCompatActivity {
 
         lvl6.setOnClickListener(v -> {
             if (isLevel6Unlocked) {
-                Toast.makeText(this, "Package Managers Level coming soon!", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(this, VcsHostingActivity.class));
             } else {
                 Toast.makeText(this, "Complete Version Control level first", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        lvl7.setOnClickListener(v -> {
+            if (isLevel7Unlocked) {
+                Toast.makeText(this, "Package Managers Level coming soon!", Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(this, "Complete VCS Hosting level first", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -194,6 +206,9 @@ public class FrontendActivity extends AppCompatActivity {
         // Track level 5 completion (Version Control)
         boolean isVcComplete = prefs.getBoolean("vc1", false);
 
+        // Track level 6 completion (VCS Hosting)
+        boolean isVcsComplete = prefs.getBoolean("vcs1", false) && prefs.getBoolean("vcs2", false);
+
         // Calculate Completed Levels
         int levelsCompleted = 0;
         if (isInternetComplete) levelsCompleted++;
@@ -201,6 +216,7 @@ public class FrontendActivity extends AppCompatActivity {
         if (isCssComplete) levelsCompleted++;
         if (isJsComplete) levelsCompleted++;
         if (isVcComplete) levelsCompleted++;
+        if (isVcsComplete) levelsCompleted++;
 
         // Update Progress Bar
         overallProgressBar.setProgress(levelsCompleted);
@@ -213,6 +229,7 @@ public class FrontendActivity extends AppCompatActivity {
         isLevel4Unlocked = isCssComplete;
         isLevel5Unlocked = isJsComplete;
         isLevel6Unlocked = isVcComplete;
+        isLevel7Unlocked = isVcsComplete;
 
         // Level 1 Success State
         if (isInternetComplete) {
@@ -309,18 +326,39 @@ public class FrontendActivity extends AppCompatActivity {
             imgLvl5.setAlpha(0.5f);
         }
 
-        // Level 6 (Package Managers) State
+        // Level 6 (VCS Hosting) State
         if (isVcComplete) {
             lockBadge6.setVisibility(View.GONE);
-            activeBadge6.setVisibility(View.VISIBLE);
-            imgLvl6.setImageResource(R.drawable.circle_yellow);
+            if (isVcsComplete) {
+                activeBadge6.setVisibility(View.GONE);
+                imgLvl6.setImageResource(R.drawable.circle_success);
+                txtLvl6.setVisibility(View.GONE);
+                if (tickLvl6 != null) tickLvl6.setVisibility(View.VISIBLE);
+            } else {
+                activeBadge6.setVisibility(View.VISIBLE);
+                imgLvl6.setImageResource(R.drawable.circle_yellow);
+                txtLvl6.setVisibility(View.VISIBLE);
+                if (tickLvl6 != null) tickLvl6.setVisibility(View.GONE);
+            }
             imgLvl6.setAlpha(1.0f);
-            txtLvl6.setVisibility(View.VISIBLE);
-            if (tickLvl6 != null) tickLvl6.setVisibility(View.GONE);
         } else {
             lockBadge6.setVisibility(View.VISIBLE);
             activeBadge6.setVisibility(View.GONE);
             imgLvl6.setAlpha(0.5f);
+        }
+
+        // Level 7 (Package Managers) State
+        if (isVcsComplete) {
+            lockBadge7.setVisibility(View.GONE);
+            activeBadge7.setVisibility(View.VISIBLE);
+            imgLvl7.setImageResource(R.drawable.circle_yellow);
+            imgLvl7.setAlpha(1.0f);
+            txtLvl7.setVisibility(View.VISIBLE);
+            if (tickLvl7 != null) tickLvl7.setVisibility(View.GONE);
+        } else {
+            lockBadge7.setVisibility(View.VISIBLE);
+            activeBadge7.setVisibility(View.GONE);
+            imgLvl7.setAlpha(0.5f);
         }
     }
 }

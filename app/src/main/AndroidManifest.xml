@@ -33,6 +33,9 @@
             android:name=".VersionControlActivity"
             android:exported="false" />
         <activity
+            android:name=".VcsHostingActivity"
+            android:exported="false" />
+        <activity
             android:name=".InternetActivity"
             android:exported="false" />
         <activity
