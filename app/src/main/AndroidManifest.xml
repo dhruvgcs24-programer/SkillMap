@@ -24,6 +24,9 @@
             android:name=".HtmlActivity"
             android:exported="false" />
         <activity
+            android:name=".CssActivity"
+            android:exported="false" />
+        <activity
             android:name=".InternetActivity"
             android:exported="false" />
         <activity

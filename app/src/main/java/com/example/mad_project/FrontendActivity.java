@@ -17,12 +17,13 @@ import androidx.cardview.widget.CardView;
 public class FrontendActivity extends AppCompatActivity {
 
     private LinearLayout lvl1, lvl2, lvl3, lvl4, lvl5, lvl6, lvl7, lvl8, lvl9;
-    private TextView txtLvl1, txtLvl2, txtLvl7, txtLvl8, txtLvl9;
-    private ImageView imgLvl1, imgLvl2, imgLvl3, imgLvl4, imgLvl5, imgLvl6, imgLvl7, imgLvl8, imgLvl9, tickLvl1, tickLvl2;
-    private CardView lockBadge2, activeBadge2, lockBadge3, activeBadge3;
+    private TextView txtLvl1, txtLvl2, txtLvl3, txtLvl4, txtLvl5, txtLvl6, txtLvl7, txtLvl8, txtLvl9;
+    private ImageView imgLvl1, imgLvl2, imgLvl3, imgLvl4, imgLvl5, imgLvl6, imgLvl7, imgLvl8, imgLvl9, tickLvl1, tickLvl2, tickLvl3, tickLvl4, tickLvl5, tickLvl6, tickLvl7, tickLvl8, tickLvl9;
+    private CardView lockBadge2, activeBadge2, lockBadge3, activeBadge3, lockBadge4, activeBadge4, lockBadge5, lockBadge6, lockBadge7, lockBadge8, lockBadge9;
     private DashedPathView dashedPathView;
     private boolean isLevel2Unlocked = false;
     private boolean isLevel3Unlocked = false;
+    private boolean isLevel4Unlocked = false;
 
     // Progress Bar components
     private ProgressBar overallProgressBar;
@@ -60,16 +61,25 @@ public class FrontendActivity extends AppCompatActivity {
         // Texts
         txtLvl1 = findViewById(R.id.txtLvl1);
         txtLvl2 = findViewById(R.id.txtLvl2);
+        txtLvl3 = findViewById(R.id.txtLvl3);
+        txtLvl4 = findViewById(R.id.txtLvl4);
+        txtLvl5 = findViewById(R.id.txtLvl5);
+        txtLvl6 = findViewById(R.id.txtLvl6);
         txtLvl7 = findViewById(R.id.txtLvl7);
         txtLvl8 = findViewById(R.id.txtLvl8);
         txtLvl9 = findViewById(R.id.txtLvl9);
         
         tickLvl1 = findViewById(R.id.tickLvl1);
         tickLvl2 = findViewById(R.id.tickLvl2);
+        tickLvl3 = findViewById(R.id.tickLvl3);
+        tickLvl4 = findViewById(R.id.tickLvl4);
+
         lockBadge2 = findViewById(R.id.lockBadge2);
         activeBadge2 = findViewById(R.id.activeBadge2);
         lockBadge3 = findViewById(R.id.lockBadge3);
         activeBadge3 = findViewById(R.id.activeBadge3);
+        lockBadge4 = findViewById(R.id.lockBadge4);
+        activeBadge4 = findViewById(R.id.activeBadge4);
 
         overallProgressBar = findViewById(R.id.overallProgressBar);
         overallProgressText = findViewById(R.id.overallProgressText);
@@ -89,9 +99,17 @@ public class FrontendActivity extends AppCompatActivity {
 
         lvl3.setOnClickListener(v -> {
             if (isLevel3Unlocked) {
-                Toast.makeText(this, "CSS Level coming soon!", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(this, CssActivity.class));
             } else {
                 Toast.makeText(this, "Complete HTML level first", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        lvl4.setOnClickListener(v -> {
+            if (isLevel4Unlocked) {
+                Toast.makeText(this, "JavaScript Level coming soon!", Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(this, "Complete CSS level first", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -133,21 +151,24 @@ public class FrontendActivity extends AppCompatActivity {
     private void updateUI() {
         SharedPreferences prefs = getSharedPreferences("progress", MODE_PRIVATE);
 
-        // Track topic completion inside Level 1 (Internet)
+        // Track level 1 completion
         int internetTopicsDone = 0;
         for (int i = 1; i <= 6; i++) {
             if (prefs.getBoolean("t" + i, false)) internetTopicsDone++;
         }
+        boolean isInternetComplete = (internetTopicsDone == 6);
 
-        // Track topic completion inside Level 2 (HTML)
+        // Track level 2 completion (HTML)
         boolean isHtmlComplete = prefs.getBoolean("h_complete", false);
+        
+        // Track level 3 completion (CSS)
+        boolean isCssComplete = prefs.getBoolean("c_complete", false);
 
         // Calculate Completed Levels
         int levelsCompleted = 0;
-        boolean isInternetComplete = (internetTopicsDone == 6);
         if (isInternetComplete) levelsCompleted++;
-        
         if (isHtmlComplete) levelsCompleted++;
+        if (isCssComplete) levelsCompleted++;
 
         // Update Progress Bar
         overallProgressBar.setProgress(levelsCompleted);
@@ -157,6 +178,7 @@ public class FrontendActivity extends AppCompatActivity {
 
         isLevel2Unlocked = isInternetComplete;
         isLevel3Unlocked = isHtmlComplete;
+        isLevel4Unlocked = isCssComplete;
 
         // Level 1 Success State
         if (isInternetComplete) {
@@ -169,13 +191,19 @@ public class FrontendActivity extends AppCompatActivity {
             tickLvl1.setVisibility(View.GONE);
         }
 
-        // Level 2 Unlock State
+        // Level 2 (HTML) State
         if (isInternetComplete) {
             lockBadge2.setVisibility(View.GONE);
             if (isHtmlComplete) {
                 activeBadge2.setVisibility(View.GONE);
+                imgLvl2.setImageResource(R.drawable.circle_success);
+                txtLvl2.setVisibility(View.GONE);
+                if (tickLvl2 != null) tickLvl2.setVisibility(View.VISIBLE);
             } else {
                 activeBadge2.setVisibility(View.VISIBLE);
+                imgLvl2.setImageResource(R.drawable.circle_yellow);
+                txtLvl2.setVisibility(View.VISIBLE);
+                if (tickLvl2 != null) tickLvl2.setVisibility(View.GONE);
             }
             imgLvl2.setAlpha(1.0f);
         } else {
@@ -184,23 +212,39 @@ public class FrontendActivity extends AppCompatActivity {
             imgLvl2.setAlpha(0.5f);
         }
         
-        // Level 2 Success State and Level 3 Unlock State
+        // Level 3 (CSS) State
         if (isHtmlComplete) {
-            imgLvl2.setImageResource(R.drawable.circle_success);
-            txtLvl2.setVisibility(View.GONE);
-            if (tickLvl2 != null) tickLvl2.setVisibility(View.VISIBLE);
-
             lockBadge3.setVisibility(View.GONE);
-            activeBadge3.setVisibility(View.VISIBLE);
+            if (isCssComplete) {
+                activeBadge3.setVisibility(View.GONE);
+                imgLvl3.setImageResource(R.drawable.circle_success);
+                txtLvl3.setVisibility(View.GONE);
+                if (tickLvl3 != null) tickLvl3.setVisibility(View.VISIBLE);
+            } else {
+                activeBadge3.setVisibility(View.VISIBLE);
+                imgLvl3.setImageResource(R.drawable.circle_yellow);
+                txtLvl3.setVisibility(View.VISIBLE);
+                if (tickLvl3 != null) tickLvl3.setVisibility(View.GONE);
+            }
             imgLvl3.setAlpha(1.0f);
         } else {
-            imgLvl2.setImageResource(R.drawable.circle_yellow);
-            txtLvl2.setVisibility(View.VISIBLE);
-            if (tickLvl2 != null) tickLvl2.setVisibility(View.GONE);
-
             lockBadge3.setVisibility(View.VISIBLE);
             activeBadge3.setVisibility(View.GONE);
             imgLvl3.setAlpha(0.5f);
+        }
+
+        // Level 4 (JavaScript) State
+        if (isCssComplete) {
+            lockBadge4.setVisibility(View.GONE);
+            activeBadge4.setVisibility(View.VISIBLE);
+            imgLvl4.setImageResource(R.drawable.circle_yellow);
+            imgLvl4.setAlpha(1.0f);
+            txtLvl4.setVisibility(View.VISIBLE);
+            if (tickLvl4 != null) tickLvl4.setVisibility(View.GONE);
+        } else {
+            lockBadge4.setVisibility(View.VISIBLE);
+            activeBadge4.setVisibility(View.GONE);
+            imgLvl4.setAlpha(0.5f);
         }
     }
 }

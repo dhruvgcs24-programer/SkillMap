@@ -49,10 +49,12 @@ public class Progress extends AppCompatActivity {
             if (prefs.getBoolean("t" + i, false)) internetTopicsDone++;
         }
         boolean isHtmlComplete = prefs.getBoolean("h_complete", false);
+        boolean isCssComplete = prefs.getBoolean("c_complete", false);
 
         int frontendLevelsCompleted = 0;
         if (internetTopicsDone == 6) frontendLevelsCompleted++;
         if (isHtmlComplete) frontendLevelsCompleted++;
+        if (isCssComplete) frontendLevelsCompleted++;
 
         // Frontend progress (out of 9 levels)
         int frontendPercent = (frontendLevelsCompleted * 100) / 9;
@@ -68,6 +70,17 @@ public class Progress extends AppCompatActivity {
         
         // pb1 represents the Frontend Developer active roadmap card
         pb1.setProgress(frontendPercent);
+
+        TextView tvNextTopic = findViewById(R.id.tvNextTopic);
+        if (internetTopicsDone < 6) {
+            tvNextTopic.setText("Next: Internet Fundamentals");
+        } else if (!isHtmlComplete) {
+            tvNextTopic.setText("Next: HTML Basics");
+        } else if (!isCssComplete) {
+            tvNextTopic.setText("Next: CSS Basics");
+        } else {
+            tvNextTopic.setText("Next: JavaScript");
+        }
 
         btnContinue.setOnClickListener(v ->
                 startActivity(new Intent(Progress.this, FrontendActivity.class)));

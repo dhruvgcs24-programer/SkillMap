@@ -205,6 +205,7 @@
                         android:textColor="?attr/colorOnSurface"/>
 
                     <TextView
+                        android:id="@+id/tvNextTopic"
                         android:text="Next: HTML Basics"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
