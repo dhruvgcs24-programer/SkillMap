@@ -30,6 +30,9 @@
             android:name=".JavascriptActivity"
             android:exported="false" />
         <activity
+            android:name=".VersionControlActivity"
+            android:exported="false" />
+        <activity
             android:name=".InternetActivity"
             android:exported="false" />
         <activity
