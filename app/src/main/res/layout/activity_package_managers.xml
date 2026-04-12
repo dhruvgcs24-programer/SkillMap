@@ -1,0 +1,631 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="?attr/colorSurface"
+    android:orientation="vertical">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="220dp">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/home_gradient" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="20dp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:id="@+id/btnBack"
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:padding="4dp"
+                    android:src="@android:drawable/ic_menu_revert"
+                    app:tint="#FFFFFF" />
+
+                <ImageView
+                    android:id="@+id/btnThemeToggle"
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:layout_alignParentEnd="true"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:padding="4dp"
+                    android:src="@android:drawable/ic_menu_compass"
+                    app:tint="#FFFFFF" />
+            </RelativeLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="Package Managers"
+                android:textColor="#FFFFFF"
+                android:textSize="26sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="Automate installs &amp; manage dependencies"
+                android:textColor="#E0E0E0"
+                android:textSize="14sp" />
+
+            <!-- Progress Bar Section -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:orientation="vertical">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp">
+
+                    <TextView
+                        android:id="@+id/progressText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Progress: 0%"
+                        android:textColor="#FFFFFF"
+                        android:textSize="12sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/progressCount"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:text="0/4 Completed"
+                        android:textColor="#FFFFFF"
+                        android:textSize="12sp" />
+                </RelativeLayout>
+
+                <ProgressBar
+                    android:id="@+id/progressBar"
+                    style="@android:style/Widget.ProgressBar.Horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="8dp"
+                    android:max="4"
+                    android:progress="0"
+                    android:progressDrawable="@android:drawable/progress_horizontal"
+                    android:progressTint="#55EFC4" />
+            </LinearLayout>
+        </LinearLayout>
+    </FrameLayout>
+
+    <ScrollView
+        android:id="@+id/mainScrollView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="-30dp"
+        android:clipToPadding="false"
+        android:paddingBottom="20dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingHorizontal="20dp">
+
+            <!-- "Mark All" Logic Card -->
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="2dp"
+                app:cardBackgroundColor="?attr/colorSurfaceVariant">
+
+                <LinearLayout
+                    android:id="@+id/btnMarkAll"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:padding="16dp"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:background="?attr/selectableItemBackground">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Mark All Topics as Completed"
+                        android:textColor="?attr/colorPrimary"
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
+
+                    <CheckBox
+                        android:id="@+id/checkMarkAll"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:buttonTint="?attr/colorPrimary" />
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <!-- Intro Card -->
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="4dp"
+                app:cardBackgroundColor="?attr/colorSurfaceVariant">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="20dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Package Managers"
+                        android:textColor="?attr/colorPrimary"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+                        android:layout_marginBottom="12dp" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Package managers automate software package installation, updates, and dependency management. Examples include npm (JavaScript), pip (Python), and yarn. Enable code sharing, reuse, and consistent project setups. Essential for modern development workflows and team collaboration."
+                        android:textColor="?attr/colorOnSurface"
+                        android:textSize="15sp"
+                        android:textStyle="bold"
+                        android:lineSpacingExtra="6dp" />
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <!-- Topic 1: npm -->
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="4dp"
+                app:cardBackgroundColor="?attr/colorSurfaceVariant">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:id="@+id/topic1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:padding="20dp"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:background="?attr/selectableItemBackground">
+
+                        <View
+                            android:layout_width="4dp"
+                            android:layout_height="40dp"
+                            android:background="#CB3837" />
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="16dp"
+                            android:layout_weight="1"
+                            android:orientation="vertical"
+                            android:descendantFocusability="blocksDescendants">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Topic 01"
+                                android:textColor="#CB3837"
+                                android:textSize="12sp"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="2dp"
+                                android:text="npm"
+                                android:textColor="?attr/colorOnSurface"
+                                android:textSize="17sp"
+                                android:textStyle="bold" />
+                        </LinearLayout>
+
+                        <CheckBox
+                            android:id="@+id/check1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:buttonTint="#CB3837"
+                            android:scaleX="1.2"
+                            android:scaleY="1.2" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/expandable1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:paddingHorizontal="20dp"
+                        android:paddingBottom="20dp"
+                        android:visibility="gone">
+
+                        <TextView
+                            android:id="@+id/desc1"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="npm (Node Package Manager) is the primary JavaScript package manager for finding, sharing, and managing code dependencies. Uses package.json to track project requirements and enables consistent builds across environments. Remains the most popular choice despite alternatives like Yarn and pnpm."
+                            android:textColor="?attr/colorOnSurfaceVariant"
+                            android:textSize="15sp"
+                            android:textStyle="bold"
+                            android:lineSpacingExtra="6dp"
+                            android:layout_marginBottom="16dp" />
+
+                        <LinearLayout android:id="@+id/linkNpm1" android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:gravity="center_vertical" android:layout_marginBottom="8dp" android:background="?attr/selectableItemBackground" android:padding="4dp" android:clickable="true" android:focusable="true">
+                            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Official" android:background="#2962FF" android:textColor="#FFFFFF" android:paddingHorizontal="6dp" android:paddingVertical="2dp" android:textSize="12sp" android:textStyle="bold" />
+                            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginStart="8dp" android:text="NPM Website" android:textColor="?attr/colorPrimary" android:textSize="14sp" android:textStyle="bold" />
+                        </LinearLayout>
+
+                        <LinearLayout android:id="@+id/linkNpm2" android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:gravity="center_vertical" android:layout_marginBottom="8dp" android:background="?attr/selectableItemBackground" android:padding="4dp" android:clickable="true" android:focusable="true">
+                            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Official" android:background="#2962FF" android:textColor="#FFFFFF" android:paddingHorizontal="6dp" android:paddingVertical="2dp" android:textSize="12sp" android:textStyle="bold" />
+                            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginStart="8dp" android:text="NPM Documentation" android:textColor="?attr/colorPrimary" android:textSize="14sp" android:textStyle="bold" />
+                        </LinearLayout>
+
+                        <LinearLayout android:id="@+id/linkNpm3" android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:gravity="center_vertical" android:layout_marginBottom="8dp" android:background="?attr/selectableItemBackground" android:padding="4dp" android:clickable="true" android:focusable="true">
+                            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="OpenSource" android:background="#000000" android:textColor="#FFFFFF" android:paddingHorizontal="6dp" android:paddingVertical="2dp" android:textSize="12sp" android:textStyle="bold" />
+                            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginStart="8dp" android:text="How to NPM" android:textColor="?attr/colorPrimary" android:textSize="14sp" android:textStyle="bold" />
+                        </LinearLayout>
+
+                        <LinearLayout android:id="@+id/linkNpm4" android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:gravity="center_vertical" android:layout_marginBottom="8dp" android:background="?attr/selectableItemBackground" android:padding="4dp" android:clickable="true" android:focusable="true">
+                            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Article" android:background="#FDCB6E" android:textColor="#000000" android:paddingHorizontal="6dp" android:paddingVertical="2dp" android:textSize="12sp" android:textStyle="bold" />
+                            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginStart="8dp" android:text="Modern JavaScript for Dinosaurs" android:textColor="?attr/colorPrimary" android:textSize="14sp" android:textStyle="bold" />
+                        </LinearLayout>
+
+                        <LinearLayout android:id="@+id/linkNpm5" android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:gravity="center_vertical" android:background="?attr/selectableItemBackground" android:padding="4dp" android:clickable="true" android:focusable="true">
+                            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Video" android:background="#D1D1FF" android:textColor="#000000" android:paddingHorizontal="6dp" android:paddingVertical="2dp" android:textSize="12sp" android:textStyle="bold" />
+                            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginStart="8dp" android:text="NPM Tutorial for Beginners" android:textColor="?attr/colorPrimary" android:textSize="14sp" android:textStyle="bold" />
+                        </LinearLayout>
+                    </LinearLayout>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <!-- Topic 2: pnpm -->
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="4dp"
+                app:cardBackgroundColor="?attr/colorSurfaceVariant">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:id="@+id/topic2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:padding="20dp"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:background="?attr/selectableItemBackground">
+
+                        <View
+                            android:layout_width="4dp"
+                            android:layout_height="40dp"
+                            android:background="#F9A826" />
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="16dp"
+                            android:layout_weight="1"
+                            android:orientation="vertical"
+                            android:descendantFocusability="blocksDescendants">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Topic 02"
+                                android:textColor="#F9A826"
+                                android:textSize="12sp"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="2dp"
+                                android:text="pnpm"
+                                android:textColor="?attr/colorOnSurface"
+                                android:textSize="17sp"
+                                android:textStyle="bold" />
+                        </LinearLayout>
+
+                        <CheckBox
+                            android:id="@+id/check2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:buttonTint="#F9A826"
+                            android:scaleX="1.2"
+                            android:scaleY="1.2" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/expandable2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:paddingHorizontal="20dp"
+                        android:paddingBottom="20dp"
+                        android:visibility="gone">
+
+                        <TextView
+                            android:id="@+id/desc2"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="pnpm (performant npm) is a fast, disk-efficient JavaScript package manager using global storage with symlinks. Saves disk space, ensures strict package.json compliance, supports monorepos, and provides better security through dependency isolation. Growing popularity for speed and efficiency."
+                            android:textColor="?attr/colorOnSurfaceVariant"
+                            android:textSize="15sp"
+                            android:textStyle="bold"
+                            android:lineSpacingExtra="6dp"
+                            android:layout_marginBottom="16dp" />
+
+                        <LinearLayout android:id="@+id/linkPnpm1" android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:gravity="center_vertical" android:layout_marginBottom="8dp" android:background="?attr/selectableItemBackground" android:padding="4dp" android:clickable="true" android:focusable="true">
+                            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Official" android:background="#2962FF" android:textColor="#FFFFFF" android:paddingHorizontal="6dp" android:paddingVertical="2dp" android:textSize="12sp" android:textStyle="bold" />
+                            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginStart="8dp" android:text="PNPM Website" android:textColor="?attr/colorPrimary" android:textSize="14sp" android:textStyle="bold" />
+                        </LinearLayout>
+
+                        <LinearLayout android:id="@+id/linkPnpm2" android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:gravity="center_vertical" android:layout_marginBottom="8dp" android:background="?attr/selectableItemBackground" android:padding="4dp" android:clickable="true" android:focusable="true">
+                            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Article" android:background="#FDCB6E" android:textColor="#000000" android:paddingHorizontal="6dp" android:paddingVertical="2dp" android:textSize="12sp" android:textStyle="bold" />
+                            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginStart="8dp" android:text="Meet PNPM: The Faster, More Performant NPM" android:textColor="?attr/colorPrimary" android:textSize="14sp" android:textStyle="bold" />
+                        </LinearLayout>
+
+                        <LinearLayout android:id="@+id/linkPnpm3" android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:gravity="center_vertical" android:background="?attr/selectableItemBackground" android:padding="4dp" android:clickable="true" android:focusable="true">
+                            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Video" android:background="#D1D1FF" android:textColor="#000000" android:paddingHorizontal="6dp" android:paddingVertical="2dp" android:textSize="12sp" android:textStyle="bold" />
+                            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginStart="8dp" android:text="Get started with pnpm" android:textColor="?attr/colorPrimary" android:textSize="14sp" android:textStyle="bold" />
+                        </LinearLayout>
+
+                    </LinearLayout>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <!-- Topic 3: Yarn -->
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="4dp"
+                app:cardBackgroundColor="?attr/colorSurfaceVariant">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:id="@+id/topic3"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:padding="20dp"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:background="?attr/selectableItemBackground">
+
+                        <View
+                            android:layout_width="4dp"
+                            android:layout_height="40dp"
+                            android:background="#2188DB" />
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="16dp"
+                            android:layout_weight="1"
+                            android:orientation="vertical"
+                            android:descendantFocusability="blocksDescendants">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Topic 03"
+                                android:textColor="#2188DB"
+                                android:textSize="12sp"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="2dp"
+                                android:text="Yarn"
+                                android:textColor="?attr/colorOnSurface"
+                                android:textSize="17sp"
+                                android:textStyle="bold" />
+                        </LinearLayout>
+
+                        <CheckBox
+                            android:id="@+id/check3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:buttonTint="#2188DB"
+                            android:scaleX="1.2"
+                            android:scaleY="1.2" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/expandable3"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:paddingHorizontal="20dp"
+                        android:paddingBottom="20dp"
+                        android:visibility="gone">
+
+                        <TextView
+                            android:id="@+id/desc3"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Yarn is Facebook's JavaScript package manager offering fast, reliable, secure alternative to npm. Features lockfile consistency, parallel installations, offline mode, and checksum verification. Yarn Berry with Plug'n'Play improves performance for large projects."
+                            android:textColor="?attr/colorOnSurfaceVariant"
+                            android:textSize="15sp"
+                            android:textStyle="bold"
+                            android:lineSpacingExtra="6dp"
+                            android:layout_marginBottom="16dp" />
+
+                        <LinearLayout android:id="@+id/linkYarn1" android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:gravity="center_vertical" android:layout_marginBottom="8dp" android:background="?attr/selectableItemBackground" android:padding="4dp" android:clickable="true" android:focusable="true">
+                            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Official" android:background="#2962FF" android:textColor="#FFFFFF" android:paddingHorizontal="6dp" android:paddingVertical="2dp" android:textSize="12sp" android:textStyle="bold" />
+                            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginStart="8dp" android:text="Yarn - Getting Started" android:textColor="?attr/colorPrimary" android:textSize="14sp" android:textStyle="bold" />
+                        </LinearLayout>
+
+                        <LinearLayout android:id="@+id/linkYarn2" android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:gravity="center_vertical" android:background="?attr/selectableItemBackground" android:padding="4dp" android:clickable="true" android:focusable="true">
+                            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Video" android:background="#D1D1FF" android:textColor="#000000" android:paddingHorizontal="6dp" android:paddingVertical="2dp" android:textSize="12sp" android:textStyle="bold" />
+                            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginStart="8dp" android:text="Yarn Crash Course" android:textColor="?attr/colorPrimary" android:textSize="14sp" android:textStyle="bold" />
+                        </LinearLayout>
+
+                    </LinearLayout>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <!-- Topic 4: Bun -->
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="4dp"
+                app:cardBackgroundColor="?attr/colorSurfaceVariant">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:id="@+id/topic4"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:padding="20dp"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:background="?attr/selectableItemBackground">
+
+                        <View
+                            android:layout_width="4dp"
+                            android:layout_height="40dp"
+                            android:background="#A29BFE" />
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="16dp"
+                            android:layout_weight="1"
+                            android:orientation="vertical"
+                            android:descendantFocusability="blocksDescendants">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Topic 04"
+                                android:textColor="#A29BFE"
+                                android:textSize="12sp"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="2dp"
+                                android:text="Bun"
+                                android:textColor="?attr/colorOnSurface"
+                                android:textSize="17sp"
+                                android:textStyle="bold" />
+                        </LinearLayout>
+
+                        <CheckBox
+                            android:id="@+id/check4"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:buttonTint="#A29BFE"
+                            android:scaleX="1.2"
+                            android:scaleY="1.2" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/expandable4"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:paddingHorizontal="20dp"
+                        android:paddingBottom="20dp"
+                        android:visibility="gone">
+
+                        <TextView
+                            android:id="@+id/desc4"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Bun is a JavaScript runtime, bundler, transpiler, and package manager, all-in-one. It's designed to be a faster, more efficient alternative to Node.js and npm, aiming to improve performance and developer experience through its speed and comprehensive toolset. Bun uses JavaScriptCore, Apple's JavaScript engine, which is known for its performance."
+                            android:textColor="?attr/colorOnSurfaceVariant"
+                            android:textSize="15sp"
+                            android:textStyle="bold"
+                            android:lineSpacingExtra="6dp"
+                            android:layout_marginBottom="16dp" />
+
+                        <LinearLayout android:id="@+id/linkBun1" android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:gravity="center_vertical" android:layout_marginBottom="8dp" android:background="?attr/selectableItemBackground" android:padding="4dp" android:clickable="true" android:focusable="true">
+                            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Official" android:background="#2962FF" android:textColor="#FFFFFF" android:paddingHorizontal="6dp" android:paddingVertical="2dp" android:textSize="12sp" android:textStyle="bold" />
+                            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginStart="8dp" android:text="Bun" android:textColor="?attr/colorPrimary" android:textSize="14sp" android:textStyle="bold" />
+                        </LinearLayout>
+
+                        <LinearLayout android:id="@+id/linkBun2" android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:gravity="center_vertical" android:layout_marginBottom="8dp" android:background="?attr/selectableItemBackground" android:padding="4dp" android:clickable="true" android:focusable="true">
+                            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Official" android:background="#2962FF" android:textColor="#FFFFFF" android:paddingHorizontal="6dp" android:paddingVertical="2dp" android:textSize="12sp" android:textStyle="bold" />
+                            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginStart="8dp" android:text="Bun Docs" android:textColor="?attr/colorPrimary" android:textSize="14sp" android:textStyle="bold" />
+                        </LinearLayout>
+
+                        <LinearLayout android:id="@+id/linkBun3" android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:gravity="center_vertical" android:layout_marginBottom="8dp" android:background="?attr/selectableItemBackground" android:padding="4dp" android:clickable="true" android:focusable="true">
+                            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="OpenSource" android:background="#000000" android:textColor="#FFFFFF" android:paddingHorizontal="6dp" android:paddingVertical="2dp" android:textSize="12sp" android:textStyle="bold" />
+                            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginStart="8dp" android:text="bun" android:textColor="?attr/colorPrimary" android:textSize="14sp" android:textStyle="bold" />
+                        </LinearLayout>
+
+                        <LinearLayout android:id="@+id/linkBun4" android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:gravity="center_vertical" android:layout_marginBottom="8dp" android:background="?attr/selectableItemBackground" android:padding="4dp" android:clickable="true" android:focusable="true">
+                            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Article" android:background="#FDCB6E" android:textColor="#000000" android:paddingHorizontal="6dp" android:paddingVertical="2dp" android:textSize="12sp" android:textStyle="bold" />
+                            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginStart="8dp" android:text="What Is Bun? An All-in-One Runtime Taking on Node.js" android:textColor="?attr/colorPrimary" android:textSize="14sp" android:textStyle="bold" />
+                        </LinearLayout>
+
+                        <LinearLayout android:id="@+id/linkBun5" android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:gravity="center_vertical" android:layout_marginBottom="8dp" android:background="?attr/selectableItemBackground" android:padding="4dp" android:clickable="true" android:focusable="true">
+                            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Video" android:background="#D1D1FF" android:textColor="#000000" android:paddingHorizontal="6dp" android:paddingVertical="2dp" android:textSize="12sp" android:textStyle="bold" />
+                            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginStart="8dp" android:text="Bun is disrupting JavaScript land" android:textColor="?attr/colorPrimary" android:textSize="14sp" android:textStyle="bold" />
+                        </LinearLayout>
+
+                        <LinearLayout android:id="@+id/linkBun6" android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:gravity="center_vertical" android:background="?attr/selectableItemBackground" android:padding="4dp" android:clickable="true" android:focusable="true">
+                            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Video" android:background="#D1D1FF" android:textColor="#000000" android:paddingHorizontal="6dp" android:paddingVertical="2dp" android:textSize="12sp" android:textStyle="bold" />
+                            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginStart="8dp" android:text="Bun Crash Course | JavaScript Runtime, Bundler &amp; Transpiler" android:textColor="?attr/colorPrimary" android:textSize="14sp" android:textStyle="bold" />
+                        </LinearLayout>
+
+                    </LinearLayout>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>
