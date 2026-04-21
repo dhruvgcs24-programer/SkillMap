@@ -42,6 +42,9 @@
             android:name=".CssFrameworksActivity"
             android:exported="false" />
         <activity
+            android:name=".LearnFrameworkActivity"
+            android:exported="false" />
+        <activity
             android:name=".InternetActivity"
             android:exported="false" />
         <activity

@@ -1,0 +1,696 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="?attr/colorSurface"
+    android:orientation="vertical">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="220dp">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/home_gradient" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="20dp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:id="@+id/btnBack"
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:padding="4dp"
+                    android:src="@android:drawable/ic_menu_revert"
+                    app:tint="#FFFFFF" />
+
+                <ImageView
+                    android:id="@+id/btnThemeToggle"
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:layout_alignParentEnd="true"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:padding="4dp"
+                    android:src="@android:drawable/ic_menu_compass"
+                    app:tint="#FFFFFF" />
+            </RelativeLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="Learn a framework"
+                android:textColor="#FFFFFF"
+                android:textSize="26sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="Development toolkits for building applications"
+                android:textColor="#E0E0E0"
+                android:textSize="14sp" />
+
+            <!-- Progress Bar Section -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:orientation="vertical">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp">
+
+                    <TextView
+                        android:id="@+id/progressText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Progress: 0%"
+                        android:textColor="#FFFFFF"
+                        android:textSize="12sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/progressCount"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:text="0/5 Completed"
+                        android:textColor="#FFFFFF"
+                        android:textSize="12sp" />
+                </RelativeLayout>
+
+                <ProgressBar
+                    android:id="@+id/progressBar"
+                    style="@android:style/Widget.ProgressBar.Horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="8dp"
+                    android:max="5"
+                    android:progress="0"
+                    android:progressDrawable="@android:drawable/progress_horizontal"
+                    android:progressTint="#55EFC4" />
+            </LinearLayout>
+        </LinearLayout>
+    </FrameLayout>
+
+    <ScrollView
+        android:id="@+id/mainScrollView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="-30dp"
+        android:clipToPadding="false"
+        android:paddingBottom="20dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingHorizontal="20dp">
+
+            <!-- "Mark All" Logic Card -->
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="2dp"
+                app:cardBackgroundColor="?attr/colorSurfaceVariant">
+
+                <LinearLayout
+                    android:id="@+id/btnMarkAll"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:padding="16dp"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:background="?attr/selectableItemBackground">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Mark All Topics as Completed"
+                        android:textColor="?attr/colorPrimary"
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
+
+                    <CheckBox
+                        android:id="@+id/checkMarkAll"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:buttonTint="?attr/colorPrimary" />
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <!-- Intro Card -->
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="4dp"
+                app:cardBackgroundColor="?attr/colorSurfaceVariant">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="20dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Web Frameworks"
+                        android:textColor="?attr/colorPrimary"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+                        android:layout_marginBottom="12dp" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Web frameworks are development toolkits providing libraries, structure, rules, and tools for building applications. Different frameworks offer varying features based on project needs. Popular examples include React, Angular, and Vue, each with unique strengths and capabilities."
+                        android:textColor="?attr/colorOnSurface"
+                        android:textSize="15sp"
+                        android:textStyle="bold"
+                        android:lineSpacingExtra="6dp" />
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <!-- Topic 1: React -->
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="4dp"
+                app:cardBackgroundColor="?attr/colorSurfaceVariant">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:id="@+id/topic1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:padding="20dp"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:background="?attr/selectableItemBackground">
+
+                        <View
+                            android:layout_width="4dp"
+                            android:layout_height="40dp"
+                            android:background="#61DAFB" />
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="16dp"
+                            android:layout_weight="1"
+                            android:orientation="vertical"
+                            android:descendantFocusability="blocksDescendants">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Topic 01"
+                                android:textColor="#61DAFB"
+                                android:textSize="12sp"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="2dp"
+                                android:text="React"
+                                android:textColor="?attr/colorOnSurface"
+                                android:textSize="17sp"
+                                android:textStyle="bold" />
+                        </LinearLayout>
+
+                        <CheckBox
+                            android:id="@+id/check1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:buttonTint="#61DAFB"
+                            android:scaleX="1.2"
+                            android:scaleY="1.2" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/expandable1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:paddingHorizontal="20dp"
+                        android:paddingBottom="20dp"
+                        android:visibility="gone">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="React is a JavaScript tool from Facebook for building UIs, especially for single-page apps. It lets you create reusable UI parts that update when data changes. React uses a virtual DOM for speed and has a one-way data flow. This component style makes code neat and reusable. React also works with tools like Redux for data management and React Native for mobile apps. It's popular because it's clear, fast, and has a big community."
+                            android:textColor="?attr/colorOnSurfaceVariant"
+                            android:textSize="15sp"
+                            android:textStyle="bold"
+                            android:lineSpacingExtra="6dp"
+                            android:layout_marginBottom="16dp" />
+
+                        <LinearLayout android:id="@+id/link1_1" android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:gravity="center_vertical" android:layout_marginBottom="8dp" android:background="?attr/selectableItemBackground" android:padding="4dp" android:clickable="true" android:focusable="true">
+                            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Video" android:background="#D1D1FF" android:textColor="#000000" android:paddingHorizontal="6dp" android:paddingVertical="2dp" android:textSize="12sp" android:textStyle="bold" />
+                            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginStart="8dp" android:text="React Course" android:textColor="?attr/colorPrimary" android:textSize="14sp" android:textStyle="bold" />
+                        </LinearLayout>
+
+                        <LinearLayout android:id="@+id/link1_2" android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:gravity="center_vertical" android:layout_marginBottom="8dp" android:background="?attr/selectableItemBackground" android:padding="4dp" android:clickable="true" android:focusable="true">
+                            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Official" android:background="#2962FF" android:textColor="#FFFFFF" android:paddingHorizontal="6dp" android:paddingVertical="2dp" android:textSize="12sp" android:textStyle="bold" />
+                            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginStart="8dp" android:text="React Website" android:textColor="?attr/colorPrimary" android:textSize="14sp" android:textStyle="bold" />
+                        </LinearLayout>
+
+                    </LinearLayout>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <!-- Topic 2: Vue.js -->
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="4dp"
+                app:cardBackgroundColor="?attr/colorSurfaceVariant">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:id="@+id/topic2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:padding="20dp"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:background="?attr/selectableItemBackground">
+
+                        <View
+                            android:layout_width="4dp"
+                            android:layout_height="40dp"
+                            android:background="#42b883" />
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="16dp"
+                            android:layout_weight="1"
+                            android:orientation="vertical"
+                            android:descendantFocusability="blocksDescendants">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Topic 02"
+                                android:textColor="#42b883"
+                                android:textSize="12sp"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="2dp"
+                                android:text="Vue.js"
+                                android:textColor="?attr/colorOnSurface"
+                                android:textSize="17sp"
+                                android:textStyle="bold" />
+                        </LinearLayout>
+
+                        <CheckBox
+                            android:id="@+id/check2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:buttonTint="#42b883"
+                            android:scaleX="1.2"
+                            android:scaleY="1.2" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/expandable2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:paddingHorizontal="20dp"
+                        android:paddingBottom="20dp"
+                        android:visibility="gone">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Vue.js is a JavaScript framework for building website interfaces. It's easy to start with and can be added to projects bit by bit. Vue uses templates and a virtual DOM (a lightweight copy of the real page) to show things on screen efficiently. It has a system of reusable components, making code organized. While Vue mainly handles what users see, it works well with other tools for things like managing data or page navigation. It's known for being easy to learn, flexible, and fast, making it popular for all kinds of projects."
+                            android:textColor="?attr/colorOnSurfaceVariant"
+                            android:textSize="15sp"
+                            android:textStyle="bold"
+                            android:lineSpacingExtra="6dp"
+                            android:layout_marginBottom="16dp" />
+
+                        <LinearLayout android:id="@+id/link2_1" android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:gravity="center_vertical" android:layout_marginBottom="8dp" android:background="?attr/selectableItemBackground" android:padding="4dp" android:clickable="true" android:focusable="true">
+                            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Official" android:background="#2962FF" android:textColor="#FFFFFF" android:paddingHorizontal="6dp" android:paddingVertical="2dp" android:textSize="12sp" android:textStyle="bold" />
+                            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginStart="8dp" android:text="Vue.js Website" android:textColor="?attr/colorPrimary" android:textSize="14sp" android:textStyle="bold" />
+                        </LinearLayout>
+
+                        <LinearLayout android:id="@+id/link2_2" android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:gravity="center_vertical" android:layout_marginBottom="8dp" android:background="?attr/selectableItemBackground" android:padding="4dp" android:clickable="true" android:focusable="true">
+                            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Video" android:background="#D1D1FF" android:textColor="#000000" android:paddingHorizontal="6dp" android:paddingVertical="2dp" android:textSize="12sp" android:textStyle="bold" />
+                            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginStart="8dp" android:text="Vue.js Course for Beginners" android:textColor="?attr/colorPrimary" android:textSize="14sp" android:textStyle="bold" />
+                        </LinearLayout>
+
+                    </LinearLayout>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <!-- Topic 3: Angular -->
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="4dp"
+                app:cardBackgroundColor="?attr/colorSurfaceVariant">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:id="@+id/topic3"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:padding="20dp"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:background="?attr/selectableItemBackground">
+
+                        <View
+                            android:layout_width="4dp"
+                            android:layout_height="40dp"
+                            android:background="#DD0031" />
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="16dp"
+                            android:layout_weight="1"
+                            android:orientation="vertical"
+                            android:descendantFocusability="blocksDescendants">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Topic 03"
+                                android:textColor="#DD0031"
+                                android:textSize="12sp"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="2dp"
+                                android:text="Angular"
+                                android:textColor="?attr/colorOnSurface"
+                                android:textSize="17sp"
+                                android:textStyle="bold" />
+                        </LinearLayout>
+
+                        <CheckBox
+                            android:id="@+id/check3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:buttonTint="#DD0031"
+                            android:scaleX="1.2"
+                            android:scaleY="1.2" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/expandable3"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:paddingHorizontal="20dp"
+                        android:paddingBottom="20dp"
+                        android:visibility="gone">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Angular is Google's TypeScript framework for building single-page applications (SPAs). Features reusable components, two-way data binding, dependency injection, and robust template system. Includes testing tools, routing, and state management. Ideal for large, complex enterprise applications."
+                            android:textColor="?attr/colorOnSurfaceVariant"
+                            android:textSize="15sp"
+                            android:textStyle="bold"
+                            android:lineSpacingExtra="6dp"
+                            android:layout_marginBottom="16dp" />
+
+                        <LinearLayout android:id="@+id/link3_1" android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:gravity="center_vertical" android:layout_marginBottom="8dp" android:background="?attr/selectableItemBackground" android:padding="4dp" android:clickable="true" android:focusable="true">
+                            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Official" android:background="#2962FF" android:textColor="#FFFFFF" android:paddingHorizontal="6dp" android:paddingVertical="2dp" android:textSize="12sp" android:textStyle="bold" />
+                            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginStart="8dp" android:text="Getting started with Angular" android:textColor="?attr/colorPrimary" android:textSize="14sp" android:textStyle="bold" />
+                        </LinearLayout>
+
+                        <LinearLayout android:id="@+id/link3_2" android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:gravity="center_vertical" android:layout_marginBottom="8dp" android:background="?attr/selectableItemBackground" android:padding="4dp" android:clickable="true" android:focusable="true">
+                            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Video" android:background="#D1D1FF" android:textColor="#000000" android:paddingHorizontal="6dp" android:paddingVertical="2dp" android:textSize="12sp" android:textStyle="bold" />
+                            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginStart="8dp" android:text="Angular for Beginners Course" android:textColor="?attr/colorPrimary" android:textSize="14sp" android:textStyle="bold" />
+                        </LinearLayout>
+
+                    </LinearLayout>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <!-- Topic 4: Svelte -->
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="4dp"
+                app:cardBackgroundColor="?attr/colorSurfaceVariant">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:id="@+id/topic4"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:padding="20dp"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:background="?attr/selectableItemBackground">
+
+                        <View
+                            android:layout_width="4dp"
+                            android:layout_height="40dp"
+                            android:background="#FF3E00" />
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="16dp"
+                            android:layout_weight="1"
+                            android:orientation="vertical"
+                            android:descendantFocusability="blocksDescendants">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Topic 04"
+                                android:textColor="#FF3E00"
+                                android:textSize="12sp"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="2dp"
+                                android:text="Svelte"
+                                android:textColor="?attr/colorOnSurface"
+                                android:textSize="17sp"
+                                android:textStyle="bold" />
+                        </LinearLayout>
+
+                        <CheckBox
+                            android:id="@+id/check4"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:buttonTint="#FF3E00"
+                            android:scaleX="1.2"
+                            android:scaleY="1.2" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/expandable4"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:paddingHorizontal="20dp"
+                        android:paddingBottom="20dp"
+                        android:visibility="gone">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Svelte is a JavaScript tool for building UIs. Unlike others, Svelte does its main work during build time, not in the browser. It turns your code into small, fast, plain JavaScript. Svelte uses components and has a simple syntax, so you write less code. It includes features for managing data, styling, and animations. Because Svelte doesn't use a virtual DOM, pages load and update quickly. It's liked for its simplicity and speed."
+                            android:textColor="?attr/colorOnSurfaceVariant"
+                            android:textSize="15sp"
+                            android:textStyle="bold"
+                            android:lineSpacingExtra="6dp"
+                            android:layout_marginBottom="16dp" />
+
+                        <LinearLayout android:id="@+id/link4_1" android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:gravity="center_vertical" android:layout_marginBottom="8dp" android:background="?attr/selectableItemBackground" android:padding="4dp" android:clickable="true" android:focusable="true">
+                            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Course" android:background="#2ecc71" android:textColor="#000000" android:paddingHorizontal="6dp" android:paddingVertical="2dp" android:textSize="12sp" android:textStyle="bold" />
+                            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginStart="8dp" android:text="Svelte Course Playlist for beginners" android:textColor="?attr/colorPrimary" android:textSize="14sp" android:textStyle="bold" />
+                        </LinearLayout>
+
+                        <LinearLayout android:id="@+id/link4_2" android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:gravity="center_vertical" android:layout_marginBottom="8dp" android:background="?attr/selectableItemBackground" android:padding="4dp" android:clickable="true" android:focusable="true">
+                            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Official" android:background="#2962FF" android:textColor="#FFFFFF" android:paddingHorizontal="6dp" android:paddingVertical="2dp" android:textSize="12sp" android:textStyle="bold" />
+                            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginStart="8dp" android:text="Svelte Website" android:textColor="?attr/colorPrimary" android:textSize="14sp" android:textStyle="bold" />
+                        </LinearLayout>
+
+                        <LinearLayout android:id="@+id/link4_3" android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:gravity="center_vertical" android:layout_marginBottom="8dp" android:background="?attr/selectableItemBackground" android:padding="4dp" android:clickable="true" android:focusable="true">
+                            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Article" android:background="#FDCB6E" android:textColor="#000000" android:paddingHorizontal="6dp" android:paddingVertical="2dp" android:textSize="12sp" android:textStyle="bold" />
+                            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginStart="8dp" android:text="Svelte and the Future of Frontend Development" android:textColor="?attr/colorPrimary" android:textSize="14sp" android:textStyle="bold" />
+                        </LinearLayout>
+
+                    </LinearLayout>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <!-- Topic 5: SolidJS -->
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="4dp"
+                app:cardBackgroundColor="?attr/colorSurfaceVariant">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:id="@+id/topic5"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:padding="20dp"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:background="?attr/selectableItemBackground">
+
+                        <View
+                            android:layout_width="4dp"
+                            android:layout_height="40dp"
+                            android:background="#2c4f7c" />
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="16dp"
+                            android:layout_weight="1"
+                            android:orientation="vertical"
+                            android:descendantFocusability="blocksDescendants">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Topic 05"
+                                android:textColor="#2c4f7c"
+                                android:textSize="12sp"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="2dp"
+                                android:text="SolidJS"
+                                android:textColor="?attr/colorOnSurface"
+                                android:textSize="17sp"
+                                android:textStyle="bold" />
+                        </LinearLayout>
+
+                        <CheckBox
+                            android:id="@+id/check5"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:buttonTint="#2c4f7c"
+                            android:scaleX="1.2"
+                            android:scaleY="1.2" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/expandable5"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:paddingHorizontal="20dp"
+                        android:paddingBottom="20dp"
+                        android:visibility="gone">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="SolidJS is a JavaScript tool for building website interfaces that is known for being very fast and efficient. It updates only the parts of the page that change, which makes it perform well. SolidJS doesn't use a virtual DOM; instead, it directly changes the real DOM. Its syntax is like React, so many developers find it familiar. It supports JSX, has built-in ways to manage data, and is small in size. SolidJS is getting popular for its speed, simplicity, and smart way of handling updates."
+                            android:textColor="?attr/colorOnSurfaceVariant"
+                            android:textSize="15sp"
+                            android:textStyle="bold"
+                            android:lineSpacingExtra="6dp"
+                            android:layout_marginBottom="16dp" />
+
+                        <LinearLayout android:id="@+id/link5_1" android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:gravity="center_vertical" android:layout_marginBottom="8dp" android:background="?attr/selectableItemBackground" android:padding="4dp" android:clickable="true" android:focusable="true">
+                            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Official" android:background="#2962FF" android:textColor="#FFFFFF" android:paddingHorizontal="6dp" android:paddingVertical="2dp" android:textSize="12sp" android:textStyle="bold" />
+                            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginStart="8dp" android:text="SolidJS Website" android:textColor="?attr/colorPrimary" android:textSize="14sp" android:textStyle="bold" />
+                        </LinearLayout>
+
+                        <LinearLayout android:id="@+id/link5_2" android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:gravity="center_vertical" android:layout_marginBottom="8dp" android:background="?attr/selectableItemBackground" android:padding="4dp" android:clickable="true" android:focusable="true">
+                            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Official" android:background="#2962FF" android:textColor="#FFFFFF" android:paddingHorizontal="6dp" android:paddingVertical="2dp" android:textSize="12sp" android:textStyle="bold" />
+                            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginStart="8dp" android:text="SolidJS Tutorial" android:textColor="?attr/colorPrimary" android:textSize="14sp" android:textStyle="bold" />
+                        </LinearLayout>
+
+                        <LinearLayout android:id="@+id/link5_3" android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:gravity="center_vertical" android:layout_marginBottom="8dp" android:background="?attr/selectableItemBackground" android:padding="4dp" android:clickable="true" android:focusable="true">
+                            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Video" android:background="#D1D1FF" android:textColor="#000000" android:paddingHorizontal="6dp" android:paddingVertical="2dp" android:textSize="12sp" android:textStyle="bold" />
+                            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginStart="8dp" android:text="SolidJS in 100 Seconds" android:textColor="?attr/colorPrimary" android:textSize="14sp" android:textStyle="bold" />
+                        </LinearLayout>
+
+                    </LinearLayout>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

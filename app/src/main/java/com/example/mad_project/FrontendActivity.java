@@ -167,7 +167,7 @@ public class FrontendActivity extends AppCompatActivity {
 
         lvl9.setOnClickListener(v -> {
             if (isLevel9Unlocked) {
-                Toast.makeText(this, "Learn a Framework Level coming soon!", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(this, LearnFrameworkActivity.class));
             } else {
                 Toast.makeText(this, "Complete CSS Frameworks level first", Toast.LENGTH_SHORT).show();
             }
@@ -239,6 +239,9 @@ public class FrontendActivity extends AppCompatActivity {
         // Track level 8 completion (CSS Frameworks - Tailwind)
         boolean isCssfComplete = prefs.getBoolean("cssf1", false);
 
+        // Track level 9 completion (Learn a Framework)
+        boolean isFwComplete = prefs.getBoolean("fw1", false) && prefs.getBoolean("fw2", false) && prefs.getBoolean("fw3", false) && prefs.getBoolean("fw4", false) && prefs.getBoolean("fw5", false);
+
         // Calculate Completed Levels
         int levelsCompleted = 0;
         if (isInternetComplete) levelsCompleted++;
@@ -249,6 +252,7 @@ public class FrontendActivity extends AppCompatActivity {
         if (isVcsComplete) levelsCompleted++;
         if (isPmComplete) levelsCompleted++;
         if (isCssfComplete) levelsCompleted++;
+        if (isFwComplete) levelsCompleted++;
 
         // Update Progress Bar
         overallProgressBar.setProgress(levelsCompleted);
@@ -426,15 +430,34 @@ public class FrontendActivity extends AppCompatActivity {
         // Level 9 (Learn a Framework) State
         if (isCssfComplete) {
             lockBadge9.setVisibility(View.GONE);
-            if (activeBadge9 != null) activeBadge9.setVisibility(View.VISIBLE);
-            imgLvl9.setImageResource(R.drawable.circle_yellow);
+            if (isFwComplete) {
+                if (activeBadge9 != null) activeBadge9.setVisibility(View.GONE);
+                imgLvl9.setImageResource(R.drawable.circle_success);
+                txtLvl9.setVisibility(View.GONE);
+                if (tickLvl9 != null) tickLvl9.setVisibility(View.VISIBLE);
+            } else {
+                if (activeBadge9 != null) activeBadge9.setVisibility(View.VISIBLE);
+                imgLvl9.setImageResource(R.drawable.circle_yellow);
+                txtLvl9.setVisibility(View.VISIBLE);
+                if (tickLvl9 != null) tickLvl9.setVisibility(View.GONE);
+            }
             imgLvl9.setAlpha(1.0f);
-            txtLvl9.setVisibility(View.VISIBLE);
-            if (tickLvl9 != null) tickLvl9.setVisibility(View.GONE);
         } else {
             lockBadge9.setVisibility(View.VISIBLE);
             if (activeBadge9 != null) activeBadge9.setVisibility(View.GONE);
             imgLvl9.setAlpha(0.5f);
+        }
+
+        // Congrats Message
+        boolean congratsShown = prefs.getBoolean("frontend_congrats_shown", false);
+        if (levelsCompleted == 9 && !congratsShown) {
+            new android.app.AlertDialog.Builder(this)
+                .setTitle("Congratulations! \uD83C\uDF89")
+                .setMessage("You have successfully completed the entire Frontend Development Roadmap!")
+                .setPositiveButton("Awesome!", (dialog, which) -> {
+                    prefs.edit().putBoolean("frontend_congrats_shown", true).apply();
+                })
+                .show();
         }
     }
 }
