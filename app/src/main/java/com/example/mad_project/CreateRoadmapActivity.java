@@ -10,12 +10,20 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class CreateRoadmapActivity extends AppCompatActivity {
 
+    public static final String EXTRA_ROADMAP_TEXT = "roadmap_text";
+
     private EditText etGoal, etLevel, etDuration;
     private Button btnGenerate;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        String roadmapText = getIntent().getStringExtra(EXTRA_ROADMAP_TEXT);
+        if (roadmapText != null) {
+            showRoadmapResult(roadmapText);
+            return;
+        }
+
         setContentView(R.layout.activity_create_roadmap);
 
         etGoal = findViewById(R.id.etGoal);
@@ -35,10 +43,19 @@ public class CreateRoadmapActivity extends AppCompatActivity {
 
             String roadmap = generateRoadmap(goal, level, duration);
 
-            Intent intent = new Intent(CreateRoadmapActivity.this, RoadmapResultActivity.class);
-            intent.putExtra("roadmap_text", roadmap);
+            Intent intent = new Intent(CreateRoadmapActivity.this, CreateRoadmapActivity.class);
+            intent.putExtra(EXTRA_ROADMAP_TEXT, roadmap);
             startActivity(intent);
         });
+    }
+
+    private void showRoadmapResult(String roadmap) {
+        setContentView(R.layout.activity_roadmap_result);
+        android.widget.TextView tvRoadmap = findViewById(R.id.tvRoadmapResult);
+        if (roadmap.isEmpty()) {
+            roadmap = "No roadmap available.";
+        }
+        tvRoadmap.setText(roadmap);
     }
 
     private String generateRoadmap(String goal, String level, String duration) {

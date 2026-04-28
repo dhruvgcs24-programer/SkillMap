@@ -12,9 +12,6 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MAD_project">
         <activity
-            android:name=".RoadmapResultActivity"
-            android:exported="false" />
-        <activity
             android:name=".CreateRoadmapActivity"
             android:exported="false" />
         <activity
