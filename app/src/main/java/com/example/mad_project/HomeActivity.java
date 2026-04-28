@@ -1,8 +1,6 @@
 package com.example.mad_project;
 
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.util.Base64;
 import android.widget.ImageView;
@@ -53,23 +51,8 @@ public class HomeActivity extends AppCompatActivity {
         loadUserData();
         setupCardListeners();
 
-        bottomNav.setSelectedItemId(R.id.nav_roadmaps);
-
-        bottomNav.setOnItemSelectedListener(item -> {
-            int id = item.getItemId();
-
-            if (id == R.id.nav_roadmaps) {
-                return true;
-            } else if (id == R.id.nav_progress) {
-                startActivity(new Intent(HomeActivity.this, Progress.class));
-                return true;
-            } else if (id == R.id.nav_profile) {
-                startActivity(new Intent(HomeActivity.this, EditProfileActivity.class));
-                return true;
-            }
-
-            return false;
-        });
+        // Use shared helper — no more copy-pasted nav logic
+        NavigationHelper.setup(this, bottomNav, R.id.nav_roadmaps);
     }
 
     private void loadUserData() {
@@ -86,18 +69,9 @@ public class HomeActivity extends AppCompatActivity {
 
                     tvWelcomeUser.setText("Hi, " + name + "! Ready to learn?");
 
+                    // Use ImageUtils — no more inline Base64 decode
                     String base64String = snapshot.child("profileImageUrl").getValue(String.class);
-                    if (base64String != null && !base64String.isEmpty()) {
-                        try {
-                            byte[] decodedString = Base64.decode(base64String, Base64.DEFAULT);
-                            Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
-                            if (decodedByte != null) {
-                                ivHeaderProfile.setImageBitmap(decodedByte);
-                                ivHeaderProfile.clearColorFilter();
-                            }
-                        } catch (Exception ignored) {
-                        }
-                    }
+                    ImageUtils.loadBase64Image(base64String, ivHeaderProfile);
                 }
             }
 

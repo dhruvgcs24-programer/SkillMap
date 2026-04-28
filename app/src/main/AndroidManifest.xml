@@ -15,6 +15,9 @@
             android:name=".CreateRoadmapActivity"
             android:exported="false" />
         <activity
+            android:name=".RoadmapResultActivity"
+            android:exported="false" />
+        <activity
             android:name=".Progress"
             android:exported="false" />
         <activity

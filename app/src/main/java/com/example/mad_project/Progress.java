@@ -18,91 +18,51 @@ public class Progress extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_progress);
 
-        // Fix Bottom Navigation
+        // ── Bottom Navigation (shared helper) ─────────────────────────────────
         BottomNavigationView bottomNav = findViewById(R.id.bottomNav);
-        bottomNav.setSelectedItemId(R.id.nav_progress);
-        bottomNav.setOnItemSelectedListener(item -> {
-            int id = item.getItemId();
-            if (id == R.id.nav_roadmaps) {
-                startActivity(new Intent(this, HomeActivity.class));
-                finish();
-                return true;
-            } else if (id == R.id.nav_progress) {
-                return true;
-            } else if (id == R.id.nav_profile) {
-                startActivity(new Intent(this, EditProfileActivity.class));
-                finish();
-                return true;
-            }
-            return false;
-        });
+        NavigationHelper.setup(this, bottomNav, R.id.nav_progress);
 
-        TextView tvPercent = findViewById(R.id.tvPercent);
-        TextView tvCompleted = findViewById(R.id.tvCompletedLabel);
-        ProgressBar pb1 = findViewById(R.id.pb1);
+        // ── Views ─────────────────────────────────────────────────────────────
+        TextView tvPercent    = findViewById(R.id.tvPercent);
+        TextView tvCompleted  = findViewById(R.id.tvCompletedLabel);
+        TextView tvNextTopic  = findViewById(R.id.tvNextTopic);
+        ProgressBar pb1       = findViewById(R.id.pb1);
         MaterialButton btnContinue = findViewById(R.id.btnContinueLearning);
 
-        SharedPreferences prefs = getSharedPreferences("progress", MODE_PRIVATE);
+        // ── Progress calculation (single source of truth) ─────────────────────
+        SharedPreferences prefs = getSharedPreferences(ProgressPrefs.PREFS_NAME, MODE_PRIVATE);
+        ProgressCalculator calc = new ProgressCalculator(prefs);
 
-        int internetTopicsDone = 0;
-        for (int i = 1; i <= 6; i++) {
-            if (prefs.getBoolean("t" + i, false)) internetTopicsDone++;
-        }
-        boolean isHtmlComplete = prefs.getBoolean("h_complete", false);
-        boolean isCssComplete = prefs.getBoolean("c_complete", false);
-        boolean isJsComplete = prefs.getBoolean("j_complete", false);
-        boolean isVcComplete = prefs.getBoolean("vc1", false);
-        boolean isVcsComplete = prefs.getBoolean("vcs1", false) && prefs.getBoolean("vcs2", false);
-        boolean isPmComplete = prefs.getBoolean("pm1", false) && prefs.getBoolean("pm2", false) && prefs.getBoolean("pm3", false) && prefs.getBoolean("pm4", false);
-        boolean isCssfComplete = prefs.getBoolean("cssf1", false);
-
-        int frontendLevelsCompleted = 0;
-        if (internetTopicsDone == 6) frontendLevelsCompleted++;
-        if (isHtmlComplete) frontendLevelsCompleted++;
-        if (isCssComplete) frontendLevelsCompleted++;
-        if (isJsComplete) frontendLevelsCompleted++;
-        if (isVcComplete) frontendLevelsCompleted++;
-        if (isVcsComplete) frontendLevelsCompleted++;
-        if (isPmComplete) frontendLevelsCompleted++;
-        if (isCssfComplete) frontendLevelsCompleted++;
-
-        // Frontend progress (out of 9 levels)
-        int frontendPercent = (frontendLevelsCompleted * 100) / 9;
-
-        // Overall progress (6 roadmaps total: Frontend, Backend, Android, Full Stack, DevOps, AI)
-        int overallPercent = frontendPercent / 6;
-
-        int fullyCompletedTopics = 0;
-        if (frontendLevelsCompleted == 9) fullyCompletedTopics++;
+        int frontendPercent        = (calc.levelsCompleted * 100) / 9;
+        int overallPercent         = frontendPercent / 6;
+        int fullyCompletedTopics   = (calc.levelsCompleted == 9) ? 1 : 0;
 
         tvPercent.setText(overallPercent + "%");
         tvCompleted.setText(fullyCompletedTopics + " of 6 topics completed");
-        
-        // pb1 represents the Frontend Developer active roadmap card
         pb1.setProgress(frontendPercent);
 
-        TextView tvNextTopic = findViewById(R.id.tvNextTopic);
-        if (internetTopicsDone < 6) {
+        // ── Next topic recommendation ─────────────────────────────────────────
+        if (!calc.isInternetComplete) {
             tvNextTopic.setText("Next: Internet Fundamentals");
-        } else if (!isHtmlComplete) {
+        } else if (!calc.isHtmlComplete) {
             tvNextTopic.setText("Next: HTML Basics");
-        } else if (!isCssComplete) {
+        } else if (!calc.isCssComplete) {
             tvNextTopic.setText("Next: CSS Basics");
-        } else if (!isJsComplete) {
+        } else if (!calc.isJsComplete) {
             tvNextTopic.setText("Next: JavaScript");
-        } else if (!isVcComplete) {
+        } else if (!calc.isVcComplete) {
             tvNextTopic.setText("Next: Version Control");
-        } else if (!isVcsComplete) {
+        } else if (!calc.isVcsComplete) {
             tvNextTopic.setText("Next: VCS Hosting");
-        } else if (!isPmComplete) {
+        } else if (!calc.isPmComplete) {
             tvNextTopic.setText("Next: Package Managers");
-        } else if (!isCssfComplete) {
+        } else if (!calc.isCssfComplete) {
             tvNextTopic.setText("Next: CSS Frameworks");
         } else {
             tvNextTopic.setText("Next: Learn a Framework");
         }
 
         btnContinue.setOnClickListener(v ->
-                startActivity(new Intent(Progress.this, FrontendActivity.class)));
+                startActivity(new Intent(this, FrontendActivity.class)));
     }
 }

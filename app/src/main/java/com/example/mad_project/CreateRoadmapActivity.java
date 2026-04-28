@@ -18,13 +18,8 @@ public class CreateRoadmapActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        String roadmapText = getIntent().getStringExtra(EXTRA_ROADMAP_TEXT);
-        if (roadmapText != null) {
-            showRoadmapResult(roadmapText);
-            return;
-        }
-
         setContentView(R.layout.activity_create_roadmap);
+
 
         etGoal = findViewById(R.id.etGoal);
         etLevel = findViewById(R.id.etLevel);
@@ -43,20 +38,13 @@ public class CreateRoadmapActivity extends AppCompatActivity {
 
             String roadmap = generateRoadmap(goal, level, duration);
 
-            Intent intent = new Intent(CreateRoadmapActivity.this, CreateRoadmapActivity.class);
+            // Launch dedicated result screen — clean back-stack
+            Intent intent = new Intent(CreateRoadmapActivity.this, RoadmapResultActivity.class);
             intent.putExtra(EXTRA_ROADMAP_TEXT, roadmap);
             startActivity(intent);
         });
     }
 
-    private void showRoadmapResult(String roadmap) {
-        setContentView(R.layout.activity_roadmap_result);
-        android.widget.TextView tvRoadmap = findViewById(R.id.tvRoadmapResult);
-        if (roadmap.isEmpty()) {
-            roadmap = "No roadmap available.";
-        }
-        tvRoadmap.setText(roadmap);
-    }
 
     private String generateRoadmap(String goal, String level, String duration) {
         String lowerGoal = goal.toLowerCase();
