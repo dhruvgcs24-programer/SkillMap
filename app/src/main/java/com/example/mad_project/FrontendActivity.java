@@ -107,11 +107,17 @@ public class FrontendActivity extends AppCompatActivity {
 
         findViewById(R.id.btnBack).setOnClickListener(v -> finish());
 
-        lvl1.setOnClickListener(v -> startActivity(new Intent(this, InternetActivity.class)));
+        lvl1.setOnClickListener(v -> {
+            Intent intent = new Intent(this, LearningModuleActivity.class);
+            intent.putExtra(LearningModuleActivity.EXTRA_MODE, LearningModuleActivity.MODE_INTERNET);
+            startActivity(intent);
+        });
 
         lvl2.setOnClickListener(v -> {
             if (isLevel2Unlocked) {
-                startActivity(new Intent(this, HtmlActivity.class));
+                Intent intent = new Intent(this, LearningModuleActivity.class);
+                intent.putExtra(LearningModuleActivity.EXTRA_MODE, LearningModuleActivity.MODE_HTML);
+                startActivity(intent);
             } else {
                 Toast.makeText(this, "Complete all Internet topics first", Toast.LENGTH_SHORT).show();
             }
@@ -119,7 +125,9 @@ public class FrontendActivity extends AppCompatActivity {
 
         lvl3.setOnClickListener(v -> {
             if (isLevel3Unlocked) {
-                startActivity(new Intent(this, CssActivity.class));
+                Intent intent = new Intent(this, LearningModuleActivity.class);
+                intent.putExtra(LearningModuleActivity.EXTRA_MODE, LearningModuleActivity.MODE_CSS);
+                startActivity(intent);
             } else {
                 Toast.makeText(this, "Complete HTML level first", Toast.LENGTH_SHORT).show();
             }
@@ -127,7 +135,9 @@ public class FrontendActivity extends AppCompatActivity {
 
         lvl4.setOnClickListener(v -> {
             if (isLevel4Unlocked) {
-                startActivity(new Intent(this, JavascriptActivity.class));
+                Intent intent = new Intent(this, LearningModuleActivity.class);
+                intent.putExtra(LearningModuleActivity.EXTRA_MODE, LearningModuleActivity.MODE_JAVASCRIPT);
+                startActivity(intent);
             } else {
                 Toast.makeText(this, "Complete CSS level first", Toast.LENGTH_SHORT).show();
             }
@@ -135,7 +145,9 @@ public class FrontendActivity extends AppCompatActivity {
 
         lvl5.setOnClickListener(v -> {
             if (isLevel5Unlocked) {
-                startActivity(new Intent(this, VersionControlActivity.class));
+                Intent intent = new Intent(this, LearningModuleActivity.class);
+                intent.putExtra(LearningModuleActivity.EXTRA_MODE, LearningModuleActivity.MODE_VERSION_CONTROL);
+                startActivity(intent);
             } else {
                 Toast.makeText(this, "Complete JavaScript level first", Toast.LENGTH_SHORT).show();
             }
@@ -143,7 +155,9 @@ public class FrontendActivity extends AppCompatActivity {
 
         lvl6.setOnClickListener(v -> {
             if (isLevel6Unlocked) {
-                startActivity(new Intent(this, VcsHostingActivity.class));
+                Intent intent = new Intent(this, LearningModuleActivity.class);
+                intent.putExtra(LearningModuleActivity.EXTRA_MODE, LearningModuleActivity.MODE_VCS_HOSTING);
+                startActivity(intent);
             } else {
                 Toast.makeText(this, "Complete Version Control level first", Toast.LENGTH_SHORT).show();
             }
@@ -151,7 +165,9 @@ public class FrontendActivity extends AppCompatActivity {
 
         lvl7.setOnClickListener(v -> {
             if (isLevel7Unlocked) {
-                startActivity(new Intent(this, PackageManagersActivity.class));
+                Intent intent = new Intent(this, LearningModuleActivity.class);
+                intent.putExtra(LearningModuleActivity.EXTRA_MODE, LearningModuleActivity.MODE_PACKAGE_MANAGERS);
+                startActivity(intent);
             } else {
                 Toast.makeText(this, "Complete VCS Hosting level first", Toast.LENGTH_SHORT).show();
             }
@@ -159,7 +175,9 @@ public class FrontendActivity extends AppCompatActivity {
 
         lvl8.setOnClickListener(v -> {
             if (isLevel8Unlocked) {
-                startActivity(new Intent(this, CssFrameworksActivity.class));
+                Intent intent = new Intent(this, LearningModuleActivity.class);
+                intent.putExtra(LearningModuleActivity.EXTRA_MODE, LearningModuleActivity.MODE_CSS_FRAMEWORKS);
+                startActivity(intent);
             } else {
                 Toast.makeText(this, "Complete Package Managers level first", Toast.LENGTH_SHORT).show();
             }
@@ -167,7 +185,9 @@ public class FrontendActivity extends AppCompatActivity {
 
         lvl9.setOnClickListener(v -> {
             if (isLevel9Unlocked) {
-                startActivity(new Intent(this, LearnFrameworkActivity.class));
+                Intent intent = new Intent(this, LearningModuleActivity.class);
+                intent.putExtra(LearningModuleActivity.EXTRA_MODE, LearningModuleActivity.MODE_LEARN_FRAMEWORK);
+                startActivity(intent);
             } else {
                 Toast.makeText(this, "Complete CSS Frameworks level first", Toast.LENGTH_SHORT).show();
             }

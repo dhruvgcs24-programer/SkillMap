@@ -21,31 +21,7 @@
             android:name=".Progress"
             android:exported="false" />
         <activity
-            android:name=".HtmlActivity"
-            android:exported="false" />
-        <activity
-            android:name=".CssActivity"
-            android:exported="false" />
-        <activity
-            android:name=".JavascriptActivity"
-            android:exported="false" />
-        <activity
-            android:name=".VersionControlActivity"
-            android:exported="false" />
-        <activity
-            android:name=".VcsHostingActivity"
-            android:exported="false" />
-        <activity
-            android:name=".PackageManagersActivity"
-            android:exported="false" />
-        <activity
-            android:name=".CssFrameworksActivity"
-            android:exported="false" />
-        <activity
-            android:name=".LearnFrameworkActivity"
-            android:exported="false" />
-        <activity
-            android:name=".InternetActivity"
+            android:name=".LearningModuleActivity"
             android:exported="false" />
         <activity
             android:name=".FrontendActivity"
