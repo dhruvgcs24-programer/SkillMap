@@ -224,8 +224,10 @@ public class LoginActivity extends AppCompatActivity {
                     } else {
 
                         Toast.makeText(this,
-                                "Authentication Failed",
-                                Toast.LENGTH_SHORT).show();
+                                "Error: " + task.getException().getMessage(),
+                                Toast.LENGTH_LONG).show();
+
+                        Log.e(TAG, "Firebase Auth Error", task.getException());
                     }
 
                 });

@@ -1,6 +1,7 @@
 {
   "project_info": {
     "project_number": "472112488884",
+    "firebase_url": "https://mad-project-d7e96-default-rtdb.firebaseio.com",
     "project_id": "mad-project-d7e96",
     "storage_bucket": "mad-project-d7e96.firebasestorage.app"
   },
@@ -14,11 +15,11 @@
       },
       "oauth_client": [
         {
-          "client_id": "472112488884-7rqohgbai33pl9j6qdo6t69p60qtvr68.apps.googleusercontent.com",
+          "client_id": "472112488884-rhnr95e6vd79ul50lbfmq9m5mj21r753.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.example.mad_project",
-            "certificate_hash": "b3bf477e12dc11be5cfc070f0fabba18f7852c32"
+            "certificate_hash": "51c22eae87d3b6414fce5d54707a6ffcdf853191"
           }
         },
         {
