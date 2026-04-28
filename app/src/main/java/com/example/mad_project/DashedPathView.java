@@ -28,10 +28,12 @@ public class DashedPathView extends View {
     public DashedPathView(Context context, AttributeSet attrs) {
         super(context, attrs);
         paint = new Paint();
-        paint.setColor(0xFFB39DDB); // Soft Purple
+        int primaryColor = context.getColor(R.color.primary);
+        paint.setColor(primaryColor);
+        paint.setAlpha(80); // 30% opacity for an elegant, minimal look
         paint.setStyle(Paint.Style.STROKE);
-        paint.setStrokeWidth(10);
-        paint.setPathEffect(new DashPathEffect(new float[]{25, 25}, 0));
+        paint.setStrokeWidth(6);
+        paint.setPathEffect(new DashPathEffect(new float[]{15, 15}, 0));
         paint.setAntiAlias(true);
     }
 

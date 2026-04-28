@@ -2,7 +2,6 @@ package com.example.mad_project;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Base64;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -22,20 +21,14 @@ public class HomeActivity extends AppCompatActivity {
 
     private FirebaseAuth mAuth;
     private DatabaseReference mDatabase;
-    private TextView tvWelcomeUser;
-    private ImageView ivHeaderProfile;
     private ValueEventListener userListener;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
-        findViewById(R.id.cardCreateRoadmap).setOnClickListener(v -> {
-            Intent intent = new Intent(HomeActivity.this, CreateRoadmapActivity.class);
-            startActivity(intent);
-        });
-        mAuth = FirebaseAuth.getInstance();
 
+        mAuth = FirebaseAuth.getInstance();
         if (mAuth.getCurrentUser() == null) {
             startActivity(new Intent(this, LoginActivity.class));
             finish();
@@ -43,63 +36,51 @@ public class HomeActivity extends AppCompatActivity {
         }
 
         mDatabase = FirebaseDatabase.getInstance().getReference();
-
-        tvWelcomeUser = findViewById(R.id.tvWelcomeUser);
-        ivHeaderProfile = findViewById(R.id.ivHeaderProfile);
         BottomNavigationView bottomNav = findViewById(R.id.bottomNav);
 
-        loadUserData();
         setupCardListeners();
-
-        // Use shared helper — no more copy-pasted nav logic
         NavigationHelper.setup(this, bottomNav, R.id.nav_roadmaps);
+        
+        // We still load user data in background but don't update UI if views are missing
+        loadUserData();
     }
 
     private void loadUserData() {
         String uid = mAuth.getCurrentUser().getUid();
-
         userListener = new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if (snapshot.exists()) {
-                    String name = snapshot.child("firstName").getValue(String.class);
-                    if (name == null || name.trim().isEmpty()) {
-                        name = "Explorer";
-                    }
-
-                    tvWelcomeUser.setText("Hi, " + name + "! Ready to learn?");
-
-                    // Use ImageUtils — no more inline Base64 decode
-                    String base64String = snapshot.child("profileImageUrl").getValue(String.class);
-                    ImageUtils.loadBase64Image(base64String, ivHeaderProfile);
-                }
+                // User data is loaded but we don't have a greeting text in the new layout
             }
-
             @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-                if (mAuth.getCurrentUser() != null) {
-                    Toast.makeText(HomeActivity.this, "Database Error", Toast.LENGTH_SHORT).show();
-                }
-            }
+            public void onCancelled(@NonNull DatabaseError error) {}
         };
-
         mDatabase.child("Users").child(uid).addValueEventListener(userListener);
     }
 
     private void setupCardListeners() {
-        findViewById(R.id.cardFrontend).setOnClickListener(v ->
-                startActivity(new Intent(HomeActivity.this, FrontendActivity.class)));
+        if (findViewById(R.id.cardFrontend) != null) {
+            findViewById(R.id.cardFrontend).setOnClickListener(v ->
+                    startActivity(new Intent(HomeActivity.this, FrontendActivity.class)));
+        }
 
-        findViewById(R.id.cardBackend).setOnClickListener(v -> showComingSoon("Backend"));
-        findViewById(R.id.cardAndroid).setOnClickListener(v -> showComingSoon("Android"));
-        findViewById(R.id.cardFullStack).setOnClickListener(v -> showComingSoon("Full Stack"));
-        findViewById(R.id.cardDevOps).setOnClickListener(v -> showComingSoon("DevOps"));
-        findViewById(R.id.cardAI).setOnClickListener(v -> showComingSoon("AI / ML"));
+        if (findViewById(R.id.cardBackend) != null)
+            findViewById(R.id.cardBackend).setOnClickListener(v -> showComingSoon("Backend"));
+        
+        if (findViewById(R.id.cardFullStack) != null)
+            findViewById(R.id.cardFullStack).setOnClickListener(v -> showComingSoon("Full Stack"));
 
-        findViewById(R.id.btnPython).setOnClickListener(v -> showComingSoon("Python"));
-        findViewById(R.id.btnSQL).setOnClickListener(v -> showComingSoon("SQL"));
-        findViewById(R.id.btnJS).setOnClickListener(v -> showComingSoon("JavaScript"));
-        findViewById(R.id.btnJava).setOnClickListener(v -> showComingSoon("Java"));
+        if (findViewById(R.id.btnPython) != null)
+            findViewById(R.id.btnPython).setOnClickListener(v -> showComingSoon("Python"));
+
+        if (findViewById(R.id.btnSQL) != null)
+            findViewById(R.id.btnSQL).setOnClickListener(v -> showComingSoon("SQL"));
+
+        if (findViewById(R.id.cardCreateRoadmap) != null) {
+            findViewById(R.id.cardCreateRoadmap).setOnClickListener(v -> {
+                startActivity(new Intent(HomeActivity.this, CreateRoadmapActivity.class));
+            });
+        }
     }
 
     private void showComingSoon(String roadmapName) {

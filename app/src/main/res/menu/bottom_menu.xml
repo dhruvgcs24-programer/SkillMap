@@ -3,13 +3,18 @@
 
     <item
         android:id="@+id/nav_roadmaps"
-        android:title="Roadmaps"
+        android:title="Explore"
         android:icon="@android:drawable/ic_menu_mapmode" />
 
     <item
         android:id="@+id/nav_progress"
-        android:title="Progress"
+        android:title="My Paths"
         android:icon="@drawable/ic_progress" />
+
+    <item
+        android:id="@+id/nav_community"
+        android:title="Community"
+        android:icon="@android:drawable/ic_menu_myplaces" />
 
     <item
         android:id="@+id/nav_profile"

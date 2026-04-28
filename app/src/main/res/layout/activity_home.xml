@@ -4,246 +4,344 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="?attr/colorSurface">
+    android:background="#F8F9FE">
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@android:color/transparent"
+        android:background="#F8F9FE"
         app:elevation="0dp">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/header"
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
             android:layout_width="match_parent"
-            android:layout_height="220dp"
-            android:background="@drawable/home_gradient_curved">
-
-            <!-- Background Decoration -->
-            <View
-                android:layout_width="150dp"
-                android:layout_height="150dp"
-                android:layout_gravity="top|end"
-                android:layout_marginTop="-40dp"
-                android:layout_marginEnd="-40dp"
-                android:alpha="0.1"
-                android:background="@drawable/circle_gray"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintEnd_toEndOf="parent" />
-
-            <com.google.android.material.card.MaterialCardView
-                android:id="@+id/iconCard"
-                android:layout_width="80dp"
-                android:layout_height="80dp"
-                app:cardCornerRadius="40dp"
-                app:cardBackgroundColor="#FFFFFF"
-                app:cardElevation="8dp"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintVertical_bias="0.3">
-                <ImageView
-                    android:id="@+id/ivHeaderProfile"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:scaleType="centerCrop"
-                    android:src="@drawable/skillmap_logo" />
-            </com.google.android.material.card.MaterialCardView>
+            android:layout_height="?attr/actionBarSize">
+            
+            <ImageView
+                android:id="@+id/btnBack"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@android:drawable/ic_menu_revert"
+                app:tint="#1F2937" />
 
             <TextView
-                android:id="@+id/tvWelcomeUser"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Welcome, Explorer!"
-                android:textColor="#FFFFFF"
-                android:textSize="22sp"
+                android:text="Explore Roadmaps"
+                android:textSize="18sp"
                 android:textStyle="bold"
-                android:layout_marginTop="12dp"
-                app:layout_constraintTop_toBottomOf="@id/iconCard"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"/>
+                android:textColor="#1F2937"
+                android:layout_gravity="center" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Ready to master a new skill today?"
-                android:textColor="#E0E0E0"
-                android:textSize="14sp"
-                app:layout_constraintTop_toBottomOf="@id/tvWelcomeUser"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"/>
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@android:drawable/ic_menu_search"
+                app:tint="#1F2937"
+                android:layout_gravity="end"
+                android:layout_marginEnd="16dp" />
+        </androidx.appcompat.widget.Toolbar>
     </com.google.android.material.appbar.AppBarLayout>
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:paddingBottom="80dp"
-        android:clipToPadding="false"
+        android:fillViewport="true"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:padding="20dp">
+            android:background="#E5E7EB"
+            android:paddingBottom="100dp">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Role-based Roadmaps"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                android:textColor="?attr/colorOnSurface"/>
-
-            <GridLayout
+            <!-- Hero Section with Light Purple Gradient Background -->
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:columnCount="2"
-                android:layout_marginTop="16dp">
+                android:orientation="vertical"
+                android:gravity="center"
+                android:paddingVertical="32dp"
+                android:background="#E0E7FF">
 
-                <com.google.android.material.card.MaterialCardView android:id="@+id/cardFrontend" style="@style/RoleCardStyle" app:cardBackgroundColor="?attr/colorSurfaceVariant">
-                    <LinearLayout style="@style/RoleCardContent" android:gravity="center">
-                        <ImageView android:src="@android:drawable/ic_menu_gallery" style="@style/RoleIconStyle" app:tint="#6C5CE7" android:layout_width="40dp" android:layout_height="40dp" />
-                        <TextView android:text="Frontend" style="@style/RoleTextStyle" android:textColor="?attr/colorOnSurface" android:textSize="16sp"/>
-                    </LinearLayout>
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    app:cardCornerRadius="20dp"
+                    app:cardElevation="0dp"
+                    app:cardBackgroundColor="@color/primary">
+                    <ImageView
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_gravity="center"
+                        android:src="@android:drawable/ic_menu_mapmode"
+                        app:tint="@color/white" />
                 </com.google.android.material.card.MaterialCardView>
 
-                <com.google.android.material.card.MaterialCardView android:id="@+id/cardBackend" style="@style/RoleCardStyle" app:cardBackgroundColor="?attr/colorSurfaceVariant">
-                    <LinearLayout style="@style/RoleCardContent" android:gravity="center">
-                        <ImageView android:src="@android:drawable/ic_lock_power_off" style="@style/RoleIconStyle" app:tint="#FF7675" android:layout_width="40dp" android:layout_height="40dp" />
-                        <TextView android:text="Backend" style="@style/RoleTextStyle" android:textColor="?attr/colorOnSurface" android:textSize="16sp"/>
-                    </LinearLayout>
-                </com.google.android.material.card.MaterialCardView>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Step-by-step guides to mastering roles"
+                    android:textSize="14sp"
+                    android:textColor="#6B7280"
+                    android:layout_marginTop="16dp"
+                    android:fontFamily="sans-serif-medium" />
+            </LinearLayout>
 
-                <com.google.android.material.card.MaterialCardView android:id="@+id/cardAndroid" style="@style/RoleCardStyle" app:cardBackgroundColor="?attr/colorSurfaceVariant">
-                    <LinearLayout style="@style/RoleCardContent" android:gravity="center">
-                        <ImageView android:src="@android:drawable/presence_online" style="@style/RoleIconStyle" app:tint="#55EFC4" android:layout_width="40dp" android:layout_height="40dp" />
-                        <TextView android:text="Android" style="@style/RoleTextStyle" android:textColor="?attr/colorOnSurface" android:textSize="16sp"/>
-                    </LinearLayout>
-                </com.google.android.material.card.MaterialCardView>
-
-                <com.google.android.material.card.MaterialCardView android:id="@+id/cardFullStack" style="@style/RoleCardStyle" app:cardBackgroundColor="?attr/colorSurfaceVariant">
-                    <LinearLayout style="@style/RoleCardContent" android:gravity="center">
-                        <ImageView android:src="@android:drawable/ic_menu_sort_by_size" style="@style/RoleIconStyle" app:tint="#00CEC9" android:layout_width="40dp" android:layout_height="40dp" />
-                        <TextView android:text="Full Stack" style="@style/RoleTextStyle" android:textColor="?attr/colorOnSurface" android:textSize="16sp"/>
-                    </LinearLayout>
-                </com.google.android.material.card.MaterialCardView>
-
-                <com.google.android.material.card.MaterialCardView android:id="@+id/cardDevOps" style="@style/RoleCardStyle" app:cardBackgroundColor="?attr/colorSurfaceVariant">
-                    <LinearLayout style="@style/RoleCardContent" android:gravity="center">
-                        <ImageView android:src="@android:drawable/stat_notify_sync" style="@style/RoleIconStyle" app:tint="#74B9FF" android:layout_width="40dp" android:layout_height="40dp" />
-                        <TextView android:text="DevOps" style="@style/RoleTextStyle" android:textColor="?attr/colorOnSurface" android:textSize="16sp"/>
-                    </LinearLayout>
-                </com.google.android.material.card.MaterialCardView>
-
-                <com.google.android.material.card.MaterialCardView android:id="@+id/cardAI" style="@style/RoleCardStyle" app:cardBackgroundColor="?attr/colorSurfaceVariant">
-                    <LinearLayout style="@style/RoleCardContent" android:gravity="center">
-                        <ImageView android:src="@android:drawable/ic_menu_agenda" style="@style/RoleIconStyle" app:tint="#FAB1A0" android:layout_width="40dp" android:layout_height="40dp" />
-                        <TextView android:text="AI / ML" style="@style/RoleTextStyle" android:textColor="?attr/colorOnSurface" android:textSize="16sp"/>
-                    </LinearLayout>
-                </com.google.android.material.card.MaterialCardView>
-            </GridLayout>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Skill-based Roadmaps"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                android:layout_marginTop="32dp"
-                android:textColor="?attr/colorOnSurface"/>
-
-            <GridLayout
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:columnCount="2"
-                android:layout_marginTop="16dp">
+                android:orientation="vertical"
+                android:paddingHorizontal="20dp"
+                android:layout_marginTop="-20dp"
+                android:background="#E0E7FF">
 
-                <com.google.android.material.card.MaterialCardView android:id="@+id/btnPython" style="@style/SkillCardStyle" app:cardBackgroundColor="?attr/colorSurfaceVariant">
-                    <LinearLayout style="@style/SkillCardContent" android:gravity="center_vertical">
-                        <TextView android:text="PY" android:background="#E3F2FD" android:textColor="#1976D2" style="@style/SkillBadgeStyle" android:gravity="center"/>
-                        <TextView android:text="Python" style="@style/SkillTextStyle" android:textColor="?attr/colorOnSurface" android:textSize="15sp"/>
-                    </LinearLayout>
-                </com.google.android.material.card.MaterialCardView>
-
-                <com.google.android.material.card.MaterialCardView android:id="@+id/btnSQL" style="@style/SkillCardStyle" app:cardBackgroundColor="?attr/colorSurfaceVariant">
-                    <LinearLayout style="@style/SkillCardContent" android:gravity="center_vertical">
-                        <TextView android:text="DB" android:background="#FFF3E0" android:textColor="#E65100" style="@style/SkillBadgeStyle" android:gravity="center"/>
-                        <TextView android:text="SQL" style="@style/SkillTextStyle" android:textColor="?attr/colorOnSurface" android:textSize="15sp"/>
-                    </LinearLayout>
-                </com.google.android.material.card.MaterialCardView>
-
-                <com.google.android.material.card.MaterialCardView android:id="@+id/btnJS" style="@style/SkillCardStyle" app:cardBackgroundColor="?attr/colorSurfaceVariant">
-                    <LinearLayout style="@style/SkillCardContent" android:gravity="center_vertical">
-                        <TextView android:text="JS" android:background="#FFFDE7" android:textColor="#FBC02D" style="@style/SkillBadgeStyle" android:gravity="center"/>
-                        <TextView android:text="JavaScript" style="@style/SkillTextStyle" android:textColor="?attr/colorOnSurface" android:textSize="15sp"/>
-                    </LinearLayout>
-                </com.google.android.material.card.MaterialCardView>
-
-                <com.google.android.material.card.MaterialCardView android:id="@+id/btnJava" style="@style/SkillCardStyle" app:cardBackgroundColor="?attr/colorSurfaceVariant">
-                    <LinearLayout style="@style/SkillCardContent" android:gravity="center_vertical">
-                        <TextView android:text="JV" android:background="#FCE4EC" android:textColor="#C2185B" style="@style/SkillBadgeStyle" android:gravity="center"/>
-                        <TextView android:text="Java" style="@style/SkillTextStyle" android:textColor="?attr/colorOnSurface" android:textSize="15sp"/>
-                    </LinearLayout>
-                </com.google.android.material.card.MaterialCardView>
-            </GridLayout>
-
-            <com.google.android.material.card.MaterialCardView
-                android:id="@+id/cardCreateRoadmap"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="32dp"
-                android:layout_marginBottom="16dp"
-                app:cardCornerRadius="20dp"
-                app:cardElevation="4dp"
-                app:strokeColor="#6C5CE7"
-                app:strokeWidth="1dp"
-                app:cardBackgroundColor="?attr/colorSurfaceVariant">
-
-                <LinearLayout
+                <!-- Role-based Roadmaps Section -->
+                <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:gravity="center"
-                    android:padding="24dp">
-
-                    <FrameLayout
-                        android:layout_width="56dp"
-                        android:layout_height="56dp"
-                        android:layout_marginBottom="16dp"
-                        android:background="@drawable/bg_ai_circle">
-
-                        <ImageView
-                            android:layout_width="24dp"
-                            android:layout_height="24dp"
-                            android:layout_gravity="center"
-                            android:src="@android:drawable/ic_input_add"
-                            app:tint="@android:color/white" />
-                    </FrameLayout>
-
+                    android:layout_marginTop="24dp">
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Create your own Roadmap"
+                        android:text="Role-based Roadmaps"
+                        android:textSize="18sp"
                         android:textStyle="bold"
-                        android:textSize="22sp"
-                        android:textColor="?attr/colorOnSurface"
-                        android:gravity="center" />
-
+                        android:textColor="#1F2937" />
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
-                        android:text="Design a personalized learning path"
-                        android:textSize="16sp"
-                        android:textColor="?attr/colorOnSurfaceVariant"
-                        android:gravity="center" />
+                        android:text="View all"
+                        android:layout_alignParentRight="true"
+                        android:textColor="@color/primary"
+                        android:textStyle="bold" />
+                </RelativeLayout>
 
-                </LinearLayout>
+                <GridLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:columnCount="2"
+                    android:layout_marginTop="16dp">
 
-            </com.google.android.material.card.MaterialCardView>
+                    <!-- Frontend -->
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/cardFrontend"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_columnWeight="1"
+                        android:layout_margin="6dp"
+                        app:cardCornerRadius="16dp"
+                        app:cardElevation="2dp"
+                        app:cardBackgroundColor="@color/white">
+                        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:padding="16dp">
+                            <com.google.android.material.card.MaterialCardView android:layout_width="40dp" android:layout_height="40dp" app:cardCornerRadius="8dp" app:cardElevation="0dp" app:cardBackgroundColor="#F3F4F6"><ImageView android:layout_width="20dp" android:layout_height="20dp" android:layout_gravity="center" android:src="@android:drawable/ic_menu_compass" app:tint="@color/primary"/></com.google.android.material.card.MaterialCardView>
+                            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Frontend" android:layout_marginTop="12dp" android:textStyle="bold" android:textColor="#1F2937"/>
+                        </LinearLayout>
+                    </com.google.android.material.card.MaterialCardView>
+
+                    <!-- Backend -->
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/cardBackend"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_columnWeight="1"
+                        android:layout_margin="6dp"
+                        app:cardCornerRadius="16dp"
+                        app:cardElevation="2dp"
+                        app:cardBackgroundColor="@color/white">
+                        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:padding="16dp">
+                            <com.google.android.material.card.MaterialCardView android:layout_width="40dp" android:layout_height="40dp" app:cardCornerRadius="8dp" app:cardElevation="0dp" app:cardBackgroundColor="#F3F4F6"><ImageView android:layout_width="20dp" android:layout_height="20dp" android:layout_gravity="center" android:src="@android:drawable/ic_menu_sort_by_size" app:tint="@color/primary"/></com.google.android.material.card.MaterialCardView>
+                            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Backend" android:layout_marginTop="12dp" android:textStyle="bold" android:textColor="#1F2937"/>
+                        </LinearLayout>
+                    </com.google.android.material.card.MaterialCardView>
+
+                    <!-- Full Stack -->
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/cardFullStack"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_columnWeight="1"
+                        android:layout_margin="6dp"
+                        app:cardCornerRadius="16dp"
+                        app:cardElevation="2dp"
+                        app:cardBackgroundColor="@color/white">
+                        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:padding="16dp">
+                            <com.google.android.material.card.MaterialCardView android:layout_width="40dp" android:layout_height="40dp" app:cardCornerRadius="8dp" app:cardElevation="0dp" app:cardBackgroundColor="#F3F4F6"><ImageView android:layout_width="20dp" android:layout_height="20dp" android:layout_gravity="center" android:src="@android:drawable/ic_menu_view" app:tint="@color/primary"/></com.google.android.material.card.MaterialCardView>
+                            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Full Stack" android:layout_marginTop="12dp" android:textStyle="bold" android:textColor="#1F2937"/>
+                        </LinearLayout>
+                    </com.google.android.material.card.MaterialCardView>
+
+                    <!-- DevOps -->
+                    <com.google.android.material.card.MaterialCardView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_columnWeight="1"
+                        android:layout_margin="6dp"
+                        app:cardCornerRadius="16dp"
+                        app:cardElevation="2dp"
+                        app:cardBackgroundColor="@color/white">
+                        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:padding="16dp">
+                            <com.google.android.material.card.MaterialCardView android:layout_width="40dp" android:layout_height="40dp" app:cardCornerRadius="8dp" app:cardElevation="0dp" app:cardBackgroundColor="#F3F4F6"><ImageView android:layout_width="20dp" android:layout_height="20dp" android:layout_gravity="center" android:src="@android:drawable/ic_menu_manage" app:tint="@color/primary"/></com.google.android.material.card.MaterialCardView>
+                            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="DevOps" android:layout_marginTop="12dp" android:textStyle="bold" android:textColor="#1F2937"/>
+                        </LinearLayout>
+                    </com.google.android.material.card.MaterialCardView>
+                </GridLayout>
+
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="6dp"
+                    app:cardCornerRadius="16dp"
+                    app:cardElevation="2dp"
+                    app:cardBackgroundColor="@color/white">
+                    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:gravity="center_vertical" android:padding="16dp">
+                        <com.google.android.material.card.MaterialCardView android:layout_width="40dp" android:layout_height="40dp" app:cardCornerRadius="8dp" app:cardElevation="0dp" app:cardBackgroundColor="#F3F4F6"><ImageView android:layout_width="20dp" android:layout_height="20dp" android:layout_gravity="center" android:src="@android:drawable/ic_menu_help" app:tint="@color/primary"/></com.google.android.material.card.MaterialCardView>
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="AI Engineer" android:layout_marginStart="16dp" android:textStyle="bold" android:textColor="#1F2937" android:textSize="16sp"/>
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+                <!-- Skill-based Roadmaps Section -->
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="32dp">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Skill-based Roadmaps"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+                        android:textColor="#1F2937" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="View all"
+                        android:layout_alignParentRight="true"
+                        android:textColor="@color/primary"
+                        android:textStyle="bold" />
+                </RelativeLayout>
+
+                <GridLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:columnCount="2"
+                    android:layout_marginTop="16dp">
+
+                    <!-- SQL -->
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/btnSQL"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_columnWeight="1"
+                        android:layout_margin="6dp"
+                        app:cardCornerRadius="16dp"
+                        app:cardElevation="2dp"
+                        app:cardBackgroundColor="@color/white">
+                        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:gravity="center_vertical" android:padding="12dp">
+                            <com.google.android.material.card.MaterialCardView android:layout_width="40dp" android:layout_height="40dp" app:cardCornerRadius="8dp" app:cardElevation="0dp" app:cardBackgroundColor="#F3F4F6"><TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_gravity="center" android:text="SQL" android:textSize="10sp" android:textStyle="bold" android:textColor="#6B7280"/></com.google.android.material.card.MaterialCardView>
+                            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="SQL" android:layout_marginStart="12dp" android:textStyle="bold" android:textColor="#1F2937"/>
+                        </LinearLayout>
+                    </com.google.android.material.card.MaterialCardView>
+
+                    <!-- React -->
+                    <com.google.android.material.card.MaterialCardView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_columnWeight="1"
+                        android:layout_margin="6dp"
+                        app:cardCornerRadius="16dp"
+                        app:cardElevation="2dp"
+                        app:cardBackgroundColor="@color/white">
+                        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:gravity="center_vertical" android:padding="12dp">
+                            <com.google.android.material.card.MaterialCardView android:layout_width="40dp" android:layout_height="40dp" app:cardCornerRadius="8dp" app:cardElevation="0dp" app:cardBackgroundColor="#F3F4F6"><TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_gravity="center" android:text="RE" android:textSize="10sp" android:textStyle="bold" android:textColor="#6B7280"/></com.google.android.material.card.MaterialCardView>
+                            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="React" android:layout_marginStart="12dp" android:textStyle="bold" android:textColor="#1F2937"/>
+                        </LinearLayout>
+                    </com.google.android.material.card.MaterialCardView>
+
+                    <!-- Python -->
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/btnPython"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_columnWeight="1"
+                        android:layout_margin="6dp"
+                        app:cardCornerRadius="16dp"
+                        app:cardElevation="2dp"
+                        app:cardBackgroundColor="@color/white">
+                        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:gravity="center_vertical" android:padding="12dp">
+                            <com.google.android.material.card.MaterialCardView android:layout_width="40dp" android:layout_height="40dp" app:cardCornerRadius="8dp" app:cardElevation="0dp" app:cardBackgroundColor="#F3F4F6"><TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_gravity="center" android:text="PY" android:textSize="10sp" android:textStyle="bold" android:textColor="#6B7280"/></com.google.android.material.card.MaterialCardView>
+                            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Python" android:layout_marginStart="12dp" android:textStyle="bold" android:textColor="#1F2937"/>
+                        </LinearLayout>
+                    </com.google.android.material.card.MaterialCardView>
+
+                    <!-- JavaScript -->
+                    <com.google.android.material.card.MaterialCardView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_columnWeight="1"
+                        android:layout_margin="6dp"
+                        app:cardCornerRadius="16dp"
+                        app:cardElevation="2dp"
+                        app:cardBackgroundColor="@color/white">
+                        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:gravity="center_vertical" android:padding="12dp">
+                            <com.google.android.material.card.MaterialCardView android:layout_width="40dp" android:layout_height="40dp" app:cardCornerRadius="8dp" app:cardElevation="0dp" app:cardBackgroundColor="#F3F4F6"><TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_gravity="center" android:text="JS" android:textSize="10sp" android:textStyle="bold" android:textColor="#6B7280"/></com.google.android.material.card.MaterialCardView>
+                            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="JavaScript" android:layout_marginStart="12dp" android:textStyle="bold" android:textColor="#1F2937"/>
+                        </LinearLayout>
+                    </com.google.android.material.card.MaterialCardView>
+                </GridLayout>
+
+                <!-- Create your own Roadmap Section -->
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/cardCreateRoadmap"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="32dp"
+                    android:layout_marginHorizontal="6dp"
+                    app:cardCornerRadius="24dp"
+                    app:cardElevation="0dp"
+                    app:strokeWidth="2dp"
+                    app:strokeColor="@color/primary"
+                    app:cardBackgroundColor="#EEF2FF"
+                    android:stateListAnimator="@null">
+                    <!-- Dashed stroke effect is hard in XML without custom drawable, I'll use a solid for now or a dashed background if available. -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:gravity="center"
+                        android:padding="32dp">
+
+                        <com.google.android.material.floatingactionbutton.FloatingActionButton
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@android:drawable/ic_input_add"
+                            app:backgroundTint="@color/primary"
+                            app:tint="@color/white"
+                            app:elevation="4dp"
+                            app:fabSize="normal"
+                            android:clickable="false"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Create your own Roadmap"
+                            android:textSize="18sp"
+                            android:textStyle="bold"
+                            android:textColor="#1F2937"
+                            android:layout_marginTop="20dp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Design a personalized learning path"
+                            android:textSize="14sp"
+                            android:textColor="#6B7280"
+                            android:layout_marginTop="8dp" />
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+            </LinearLayout>
 
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
@@ -253,10 +351,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
-        android:background="?attr/colorSurface"
+        android:background="@color/white"
         app:menu="@menu/bottom_menu"
-        app:itemIconTint="#6C5CE7"
-        app:itemTextColor="#6C5CE7"
+        app:labelVisibilityMode="labeled"
+        app:itemIconSize="24dp"
+        app:itemIconTint="@color/primary"
+        app:itemTextColor="@color/primary"
         app:elevation="16dp"/>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
