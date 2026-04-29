@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Single path node — included 9 times in activity_backend.xml
+     IDs are disambiguated in the parent via the android:id on <include> tag.
+     Access child views with: nodeRoot.findViewById(R.id.beNodeBgX) etc.
+     NOTE: Because <include> overrides the root id, child ids like beNodeBg0
+     must be set on the actual child views below, NOT on the root LinearLayout.  -->
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:gravity="center_horizontal"
+    android:clickable="true"
+    android:focusable="true"
+    android:foreground="?attr/selectableItemBackgroundBorderless">
+
+    <FrameLayout
+        android:layout_width="80dp"
+        android:layout_height="80dp">
+
+        <!-- Circle background — swapped between circle_gray / circle_yellow / circle_success -->
+        <View
+            android:id="@+id/beNodeBg0"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:background="@drawable/circle_gray"/>
+
+        <!-- Number shown when not completed -->
+        <TextView
+            android:id="@+id/beNodeNum0"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:textColor="#FFFFFF"
+            android:textSize="26sp"
+            android:textStyle="bold"
+            android:text="1"/>
+
+        <!-- Checkmark shown when completed -->
+        <ImageView
+            android:id="@+id/beNodeCheck0"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:layout_gravity="center"
+            android:src="@drawable/ic_check_rounded"
+            android:tint="#FFFFFF"
+            android:visibility="gone"/>
+
+    </FrameLayout>
+
+    <!-- Label below the circle -->
+    <TextView
+        android:id="@+id/beNodeLabel0"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Node"
+        android:textColor="#1A1A2E"
+        android:textSize="12sp"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:maxWidth="100dp"
+        android:layout_marginTop="6dp"/>
+
+</LinearLayout>

@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F3F0FF">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <!-- ══ Purple header ══════════════════════════════════════════════════ -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@drawable/bg_blur_purple"
+            android:paddingStart="20dp"
+            android:paddingEnd="20dp"
+            android:paddingTop="8dp"
+            android:paddingBottom="24dp">
+
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/beToolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Backend Developer"
+                android:textColor="#FFFFFF"
+                android:textSize="26sp"
+                android:textStyle="bold"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="10dp">
+
+                <TextView
+                    android:id="@+id/beProgressPct"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Roadmap Progress: 0%"
+                    android:textColor="#DDFFFFFF"
+                    android:textSize="12sp"/>
+
+                <TextView
+                    android:id="@+id/beLevels"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="0/8 Levels Completed"
+                    android:textColor="#DDFFFFFF"
+                    android:textSize="12sp"/>
+            </LinearLayout>
+
+            <ProgressBar
+                android:id="@+id/beProgressBar"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="match_parent"
+                android:layout_height="8dp"
+                android:layout_marginTop="6dp"
+                android:max="100"
+                android:progress="0"
+                android:progressTint="#4CAF50"
+                android:progressBackgroundTint="#55FFFFFF"/>
+        </LinearLayout>
+
+        <!-- ══ Dashed path + nodes ════════════════════════════════════════════
+             Nodes alternate LEFT → RIGHT → LEFT …
+             DashedPathView draws the winding dashed line behind them.
+        ════════════════════════════════════════════════════════════════════════ -->
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="1350dp">
+
+            <com.example.mad_project.DashedPathView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+
+            <!-- ── NODE 0 : Internet  (LEFT) ────────────────────────────────── -->
+            <include layout="@layout/item_backend_node"
+                android:id="@+id/beNodeRoot0"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="40dp"
+                android:layout_marginStart="52dp"/>
+
+            <!-- ── NODE 1 : Frontend Basics  (RIGHT) ────────────────────────── -->
+            <include layout="@layout/item_backend_node"
+                android:id="@+id/beNodeRoot1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="190dp"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="52dp"/>
+
+            <!-- ── NODE 2 : Pick a Language  (LEFT) ─────────────────────────── -->
+            <include layout="@layout/item_backend_node"
+                android:id="@+id/beNodeRoot2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="340dp"
+                android:layout_marginStart="52dp"/>
+
+            <!-- ── NODE 3 : Version Control  (RIGHT) ────────────────────────── -->
+            <include layout="@layout/item_backend_node"
+                android:id="@+id/beNodeRoot3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="490dp"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="52dp"/>
+
+            <!-- ── NODE 4 : Relational DB  (LEFT) ───────────────────────────── -->
+            <include layout="@layout/item_backend_node"
+                android:id="@+id/beNodeRoot4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="640dp"
+                android:layout_marginStart="52dp"/>
+
+            <!-- ── NODE 5 : APIs  (RIGHT) ───────────────────────────────────── -->
+            <include layout="@layout/item_backend_node"
+                android:id="@+id/beNodeRoot5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="790dp"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="52dp"/>
+
+            <!-- ── NODE 6 : Caching  (LEFT) ─────────────────────────────────── -->
+            <include layout="@layout/item_backend_node"
+                android:id="@+id/beNodeRoot6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="940dp"
+                android:layout_marginStart="52dp"/>
+
+            <!-- ── NODE 7 : Web Servers  (RIGHT) ────────────────────────────── -->
+            <include layout="@layout/item_backend_node"
+                android:id="@+id/beNodeRoot7"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="1090dp"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="52dp"/>
+
+            <!-- ── NODE 8 : Coming Soon  (LEFT) ─────────────────────────────── -->
+            <include layout="@layout/item_backend_node"
+                android:id="@+id/beNodeRoot8"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="1230dp"
+                android:layout_marginStart="52dp"/>
+
+        </RelativeLayout>
+    </LinearLayout>
+</androidx.core.widget.NestedScrollView>

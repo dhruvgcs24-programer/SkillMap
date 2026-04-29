@@ -65,7 +65,7 @@ public class HomeActivity extends AppCompatActivity {
         }
 
         if (findViewById(R.id.cardBackend) != null)
-            findViewById(R.id.cardBackend).setOnClickListener(v -> showComingSoon("Backend"));
+            findViewById(R.id.cardBackend).setOnClickListener(v -> startActivity(new Intent(HomeActivity.this, BackendActivity.class)));
         
         if (findViewById(R.id.cardFullStack) != null)
             findViewById(R.id.cardFullStack).setOnClickListener(v -> showComingSoon("Full Stack"));
